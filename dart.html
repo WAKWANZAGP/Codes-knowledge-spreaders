@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dart Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Dart with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(0, 36, 48, 0.94); /* Dart blue-green overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #0175C2;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #13e6cd;
+    }
+    .language-heading .fa-location-arrow {
+      font-size: 3.2rem;
+      color: #13e6cd;
+      text-shadow: 0 4px 40px #0175C288, 0 1px 0 #fff;
+      transform: rotate(45deg);
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: rotate(45deg) translateY(-16px) scale(1.08);}
+      from { transform: rotate(45deg) translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(9, 40, 46, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #01344e99;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #dff8fa;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #13e6cd;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(15, 48, 63, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #e0fcfb;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #13e6cd;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #016072;
+      border-radius: 0.5em;
+      background: rgba(12, 44, 54, 0.86);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(1,117,194,0.09);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #13e6cd;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #0175C2;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #dff8fa;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(8, 36, 48, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #0175c21a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #dff8fa;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #13e6cd;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #021a25;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #0175c23c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #13e6cd;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-location-arrow"></i>
+      Dart Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Dart</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Dart is simple and modern. Be ready to learn both for web and mobile (Flutter) apps!</li>
+            <li><b>Tools:</b> Install the Dart SDK and use an editor like VS Code or Android Studio (for Flutter).</li>
+            <li><b>Practice:</b> Write and run every sample—try <a href="https://dartpad.dev/" target="_blank">DartPad</a> for instant results.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> for help and new ideas.</li>
+            <li><b>Take Notes:</b> Track new syntax, error messages, and tips.</li>
+            <li><b>Explore:</b> Try making small Dart or Flutter apps as you learn.</li>
+            <li><b>Debug:</b> Use print statements and error info to find and fix mistakes.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Dart Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/Ej_Pcr4uC2Q" allowfullscreen title="Dart Programming - Full Course"></iframe>
+            </div>
+            <div class="video-title">Dart Programming - Full Course</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/5rtujDjt50w" allowfullscreen title="Dart Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Dart Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/ASJXAp2z2p8" allowfullscreen title="Dart Programming Crash Course"></iframe>
+            </div>
+            <div class="video-title">Dart Programming Crash Course</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Dart Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Dart</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Dart is a modern, object-oriented language by Google, great for web and mobile (Flutter) apps.</li>
+              <li>Easy to learn if you know JavaScript, Java, or C#.</li>
+              <li>Try it online at <a href="https://dartpad.dev/" target="_blank">DartPad</a>.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Program Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Dart programs start with <code>void main()</code> function.</li>
+              <li>
+                <pre>
+void main() {
+  print('Hello, Dart!');
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>var</code>, <code>final</code>, <code>const</code>, or explicit types (<code>int</code>, <code>double</code>, <code>String</code>, <code>bool</code>).</li>
+              <li>
+                <pre>
+var name = 'Alice';
+int age = 20;
+final pi = 3.14;
+const planet = 'Earth';
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>print()</code> for output.</li>
+              <li>For input (console), use <code>dart:io</code>:
+                <pre>
+import 'dart:io';
+void main() {
+  String? name = stdin.readLineSync();
+  print('Hello, $name!');
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, else, switch)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if (age >= 18) {
+  print('Adult');
+} else {
+  print('Minor');
+}
+                </pre>
+              </li>
+              <li>
+                <pre>
+switch(day) {
+  case 'Monday':
+    print('Start of week');
+    break;
+  default:
+    print('Other day');
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, while, do-while, for-in)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+for (int i = 0; i < 3; i++) {
+  print(i);
+}
+while (condition) { ... }
+do { ... } while (condition);
+for (var item in list) { ... }
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+int add(int a, int b) {
+  return a + b;
+}
+var sum = add(2, 3);
+                </pre>
+              </li>
+              <li>Arrow syntax: <code>int sqr(int n) => n * n;</code></li>
+              <li>Optional and named parameters supported.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Lists, Sets, and Maps</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+var numbers = [1, 2, 3];
+numbers.add(4);
+
+var fruits = {'apple', 'banana'};
+var ages = {'Alice': 20, 'Bob': 25};
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Classes and Objects</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+class Person {
+  String name;
+  int age;
+  Person(this.name, this.age);
+
+  void greet() => print('Hi, I am $name.');
+}
+var p = Person('Alice', 20);
+p.greet();
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Null Safety</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>By default, variables can't be null unless marked nullable with <code>?</code>.</li>
+              <li>
+                <pre>
+String? name = null;
+if (name != null) { print(name.length); }
+                </pre>
+              </li>
+              <li>Use the <code>!</code> operator to assert not-null (use carefully).</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Async Programming</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>Future</code> and <code>async/await</code> for asynchronous code.</li>
+              <li>
+                <pre>
+Future<void> fetchData() async {
+  await Future.delayed(Duration(seconds: 2));
+  print('Data loaded!');
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use clear names and keep code tidy.</li>
+              <li>Explore: <a href="https://dart.dev/guides" target="_blank">dart.dev/guides</a></li>
+              <li>Practice by making small apps and experimenting.</li>
+              <li>Try Flutter for building mobile and web UIs with Dart!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

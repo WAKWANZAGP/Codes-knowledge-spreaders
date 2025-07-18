@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>R Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn R with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(36, 62, 80, 0.95); /* R blue overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #276dc3;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #a6dcfa;
+    }
+    .language-heading .fa-r-project {
+      font-size: 3.2rem;
+      color: #276dc3;
+      text-shadow: 0 4px 40px #276dc399, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(38, 50, 72, 0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #204369cc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e6f5fc;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #a6dcfa;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(54, 70, 100, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #e6f5fc;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #a6dcfa;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #276dc3;
+      border-radius: 0.5em;
+      background: rgba(38, 50, 72, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(39,109,195,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #a6dcfa;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #276dc3;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e6f5fc;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(28, 42, 62, 0.99);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #276dc31a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e6f5fc;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #a6dcfa;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #234b6c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #276dc33c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #a6dcfa;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-brands fa-r-project"></i>
+      R Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning R</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> R is a language for statistics, data analysis, and visualization. Think in vectors and data frames!</li>
+            <li><b>Tools:</b> Install R and RStudio, or use <a href="https://posit.cloud/" target="_blank">Posit Cloud</a> in your browser.</li>
+            <li><b>Practice:</b> Type and run every code sample. Try R scripts and interactive R Markdown notebooks.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> for R help and data science discussions.</li>
+            <li><b>Take Notes:</b> Track new functions, error messages, and R package tips.</li>
+            <li><b>Explore:</b> Try importing data, plotting graphs, or analyzing datasets as you learn.</li>
+            <li><b>Debug:</b> Use <code>print()</code>, <code>str()</code>, and <code>summary()</code> for troubleshooting.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> R Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/_V8eKsto3Ug" allowfullscreen title="R Programming Full Course - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">R Programming Full Course - FreeCodeCamp</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/32o0DnuRjfg" allowfullscreen title="R Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">R Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/HZq2hC5b6yE" allowfullscreen title="R Programming Crash Course"></iframe>
+            </div>
+            <div class="video-title">R Programming Crash Course</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> R Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to R</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>R is a language for data analysis, statistics, and visualization.</li>
+              <li>Widely used in academia, research, and industry.</li>
+              <li>Files usually end with <code>.R</code> or <code>.Rmd</code> (R Markdown).</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Basic Syntax & Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+# This is a comment
+x <- 5
+y = 2 * x
+print(y)
+                </pre>
+              </li>
+              <li>Use <code>&lt;-</code> or <code>=</code> for assignment. R is case-sensitive.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Vectors, Lists, and Data Frames</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+vec <- c(1, 2, 3)
+lst <- list(a=1, b="hi")
+df <- data.frame(name=c("Alice","Bob"), age=c(20,21))
+df$name
+                </pre>
+              </li>
+              <li>Vectors are the basic data structure in R.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Output: <code>print()</code>, <code>cat()</code></li>
+              <li>Input: <code>readline(prompt="Enter your name: ")</code></li>
+              <li>
+                <pre>
+name <- readline(prompt="Enter your name: ")
+cat("Hello,", name, "!\n")
+                </pre>
+              </li>
+              <li>Read data from CSV: <code>read.csv("file.csv")</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, else, switch)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if (age >= 18) {
+  print("Adult")
+} else {
+  print("Minor")
+}
+
+switch(day,
+  "Monday" = print("Start of week"),
+  print("Other day")
+)
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, while, repeat)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+for (i in 1:5) {
+  print(i)
+}
+while (x < 10) {
+  x <- x + 1
+}
+repeat {
+  print(x)
+  if (x > 10) break
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+add <- function(a, b) {
+  return(a + b)
+}
+add(2, 3)
+                </pre>
+              </li>
+              <li>Functions are first-class and can be anonymous.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Packages and Libraries</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Install: <code>install.packages("dplyr")</code></li>
+              <li>Load: <code>library(dplyr)</code></li>
+              <li>Popular: <code>ggplot2</code> for plots, <code>dplyr</code> for data manipulation, <code>tidyr</code> for data tidying.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Plotting and Visualization</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+x <- 1:10
+y <- x^2
+plot(x, y, type="b", col="blue")
+                </pre>
+              </li>
+              <li>For advanced: <code>library(ggplot2)</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Data Import/Export</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+data <- read.csv("file.csv")
+write.csv(data, "out.csv")
+                </pre>
+              </li>
+              <li>R can handle CSV, Excel, JSON, and more.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Statistical Analysis</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+mean(c(1,2,3))
+summary(df)
+lm(y ~ x, data=df)
+                </pre>
+              </li>
+              <li>Many built-in functions for stats, regression, and hypothesis testing.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Keep code tidy and use comments.</li>
+              <li>Explore docs: <a href="https://cran.r-project.org/manuals.html" target="_blank">CRAN Manuals</a></li>
+              <li>Practice by analyzing real datasets and visualizing data!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

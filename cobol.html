@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>COBOL Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn COBOL with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(8,12,18,0.92);
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #00ffe7;
+    }
+    .language-heading .fa-database {
+      font-size: 3.2rem;
+      color: #00ffe7;
+      text-shadow: 0 4px 40px #005c7e99, 0 1px 0 #ffd700;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(20, 30, 40, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #000c;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e7e7e7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #ffd700;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(25, 33, 45, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f3f3f3;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #00ffe7;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #222c33;
+      border-radius: 0.5em;
+      background: rgba(30, 40, 55, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(0,255,231,0.06);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ffd700;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #00ffe7;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e7e7e7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(18, 26, 38, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #00ffe71a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e7e7e7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #ffd700;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #000c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #00ffe73c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #00ffe7;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-database"></i>
+      COBOL Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning COBOL</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> COBOL is verbose and business-oriented. Be patient and focus on understanding structure and data flow.</li>
+            <li><b>Tools:</b> Install a COBOL compiler (like GnuCOBOL or OpenCOBOL) and try online editors or mainframe emulators.</li>
+            <li><b>Practice:</b> Type every example and run it. Experiment with data, sections, and procedures.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> to discuss challenges and share code.</li>
+            <li><b>Take Notes:</b> Record common divisions, syntax patterns, and error messages.</li>
+            <li><b>Stay Curious:</b> Try small data-processing programs and batch jobs as you learn.</li>
+            <li><b>Don’t Fear Errors:</b> Read errors carefully and look up solutions—COBOL syntax is strict but learnable.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> COBOL Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/3v3rRZf2zjw" allowfullscreen title="COBOL Full Course for Beginners"></iframe>
+            </div>
+            <div class="video-title">COBOL Full Course for Beginners</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/1Uu7K9GkA0g" allowfullscreen title="COBOL Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">COBOL Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/4gkKUb1wX2g" allowfullscreen title="COBOL Programming - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">COBOL Programming - FreeCodeCamp</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> COBOL Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to COBOL</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>What is COBOL? A business-oriented programming language for data processing.</li>
+              <li>Main uses: Banking, insurance, government, legacy systems.</li>
+              <li>How COBOL works: Compiling and running batch programs.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Program Structure & Divisions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Four main divisions: IDENTIFICATION, ENVIRONMENT, DATA, PROCEDURE.</li>
+              <li>Required vs optional sections.</li>
+              <li>Example skeleton structure.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Data Types & Variables</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Picture clause: <code>PIC</code></li>
+              <li>Alphanumeric, numeric, and alphabetic variables</li>
+              <li>Level numbers and data hierarchy (01, 05, 77, 88)</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>READ, WRITE, DISPLAY, ACCEPT statements</li>
+              <li>File handling: SELECT, ASSIGN, ORGANIZATION, ACCESS MODE</li>
+              <li>File section definitions</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Arithmetic Operations</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>ADD, SUBTRACT, MULTIPLY, DIVIDE, COMPUTE</li>
+              <li>Storing results in variables</li>
+              <li>Rounding, truncation, and arithmetic expressions</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Control Flow (IF, PERFORM, EVALUATE)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>IF statement for conditional logic</li>
+              <li>PERFORM for loops and procedures</li>
+              <li>EVALUATE (similar to switch/case)</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Procedures and Sections</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Defining and calling paragraphs and sections</li>
+              <li>PERFORM ... THRU ...</li>
+              <li>STOP RUN and EXIT statements</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Arrays and Tables</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>OCCURS clause for defining arrays</li>
+              <li>INDEXED BY for array indexing</li>
+              <li>SEARCH and PERFORM VARYING</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. String Handling</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>STRING, UNSTRING, INSPECT statements</li>
+              <li>Manipulating character data</li>
+              <li>Moving data between fields</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Error Handling and Debugging</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>ON SIZE ERROR, INVALID KEY</li>
+              <li>Debugging tips: DISPLAY, tracing, and common mistakes</li>
+              <li>Reading compiler error messages</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Advanced Topics (Sorting, Merging, Reports)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>SORT and MERGE statements</li>
+              <li>Creating simple reports and print files</li>
+              <li>Using REPORT WRITER (if available)</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Modern COBOL and Integration</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>COBOL and databases (DB2, SQL)</li>
+              <li>Calling external programs (C, Java, APIs)</li>
+              <li>COBOL in the cloud and modernization strategies</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

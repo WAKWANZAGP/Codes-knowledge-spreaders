@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Codes Knowledge Spreaders</title>
+  <meta name="description" content="A modern platform for daily programming language learning, powered by smart AI features." />
+  <meta name="author" content="World Class Developer" />
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo-title">
+        <button class="logo-btn" aria-label="Home" type="button">
+          <div class="school-logo-anim" tabindex="0">
+            <img src="logo2.png" alt="Codes Knowledge Spreaders Logo" class="logo-img"/>
+            <span class="logo-glow"></span>
+          </div>
+        </button>
+        <span class="school-title">CODES KNOWLEDGE SPREADERS</span>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+          <i class="fa fa-bars"></i>
+        </button>
+        <ul class="nav-list">
+          <li><a href="index.html" class="active">HOME</a></li>
+          <li><a href="courses.html">COURSES</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="community.html">COMMUNITY</a></li>
+        </ul>
+      </nav>
+      <div class="header-features">
+        <div class="header-theme">
+          <label for="theme-select">Theme:</label>
+          <select id="theme-select" aria-label="Theme switcher">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="header-search">
+          <input type="text" id="ai-search" placeholder="Search platform, courses, or answers..." aria-label="AI Search" autocomplete="off"/>
+          <button id="ai-search-btn" aria-label="Run AI Search" type="button"><i class="fa fa-search"></i></button>
+          <div id="ai-search-results"></div>
+        </div>
+        <div class="header-voice">
+          <button class="voice-btn" title="Voice Search" aria-label="Voice Search" type="button">
+            <i class="fas fa-microphone"></i>
+          </button>
+        </div>
+        <div class="header-chat">
+          <button id="open-chatbot" class="open-chatbot" aria-label="Open AI Chat" type="button"><i class="fa-solid fa-message"></i> Ask AI</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Chatbot Widget -->
+  <aside id="chatbot-container" class="chatbot-container" aria-label="AI Chatbot" style="display:none;">
+    <div class="chatbot-header">
+      <span>Smart AI Assistant</span>
+      <button id="close-chatbot" aria-label="Close Chatbot" type="button">&times;</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages"></div>
+    <form class="chatbot-form" onsubmit="event.preventDefault(); sendChatbotMessage();">
+      <input id="chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" aria-label="Chatbot Input"/>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </aside>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Welcome to Codes Knowledge Spreaders</h1>
+        <p>Master programming languages, get daily learning materials, and access AI-powered assistance. Build your skills, connect with peers, and unlock your coding potential!</p>
+        <div class="hero-buttons">
+          <a href="courses.html" class="cta-btn">Explore Courses</a>
+          <button id="quick-ask-ai" class="cta-btn secondary" type="button">Ask AI Instantly</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="logo2.png" alt="Students learning programming" />
+        <p>Join our community of learners and start your coding journey today!</p>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <a href="daily-challenges.html" class="feature-card">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>Daily Coding Challenges</h3>
+        <p>Solve new challenges every day and boost your problem-solving skills with instant feedback.</p>
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbB1d7IBPzjUo0D1lc1N" class="feature-card">
+        <i class="fa-solid fa-users"></i>
+        <h3>Student Community</h3>
+        <p>Collaborate, discuss, and share knowledge with coders from all over the world on our community platform.</p>
+      </a>
+      <a href="ai-assistant.html" class="feature-card">
+        <i class="fa-solid fa-brain"></i>
+        <h3>AI Q&A Assistant</h3>
+        <p>Ask any coding question and get smart, instant answers from our AI-powered chatbot and search assistant.</p>
+      </a>
+      <a href="certifications.html" class="feature-card">
+        <i class="fa-solid fa-certificate"></i>
+        <h3>Certifications</h3>
+        <p>Earn certificates as you complete courses and challenges, and showcase your achievements.</p>
+      </a>
+    </section>
+
+    <section class="languages-container">
+      <section class="community-hero">
+        <h1>Join the Programming Community!</h1>
+        <p>
+          Select your preferred programming language below and instantly connect with fellow learners, ask questions, or find resources.
+          <br>
+          <span class="free-badge"><i class="fa-solid fa-crown"></i> 100% Free and open for everyone! <i class="fa-solid fa-bolt"></i></span>
+        </p>
+      </section>
+      <section class="community-language-select">
+        <h2>Choose Your Language Community</h2>
+        <div class="community-language-grid" id="community-language-grid">
+          <!-- Language buttons will be injected by JS -->
+        </div>
+      </section>
+      <style>
+        .community-hero {
+          padding-top: 100px;
+          text-align: center;
+        }
+        .community-hero h1 {
+          color: #00ffe7;
+          font-size: 2.1rem;
+          font-weight: 800;
+          margin-bottom: 0.5em;
+        }
+        .community-hero p {
+          color: #e7e7e7;
+          font-size: 1.17rem;
+          margin-bottom: 1.2em;
+        }
+        .community-language-select {
+          padding: 1.8em 2vw 2.2em 2vw;
+          text-align: center;
+        }
+        .community-language-select h2 {
+          color: #ffd700;
+          font-size: 1.3rem;
+          margin-bottom: 1.2em;
+          font-weight: 700;
+        }
+        .community-language-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1.1em 1.5em;
+          margin-top: 1em;
+        }
+        .community-lang-btn {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background: rgba(10, 10, 10, 0.85);
+          border: 2px solid #00ffe7;
+          border-radius: 1em;
+          padding: 1.2em 2.2em;
+          min-width: 110px;
+          max-width: 200px;
+          min-height: 110px;
+          text-decoration: none;
+          color: #00ffe7;
+          font-weight: 600;
+          font-size: 1.05em;
+          transition: transform 0.18s, box-shadow 0.18s;
+        }
+        .community-lang-btn:hover {
+          transform: translateY(-5px) scale(1.05);
+          box-shadow: 0 6px 18px rgba(0,255,231,0.16);
+          border-color: #ffd700;
+        }
+        .community-lang-icon {
+          font-size: 2.2em;
+          margin-bottom: 0.5em;
+        }
+        .cpp-plus {
+          font-size: 0.6em;
+          vertical-align: super;
+          margin-left: 0.05em;
+        }
+      </style>
+      <script>
+        // Map languages to external community/discussion links
+        const languageCommunities = [
+          {name: "HTML", icon: "fa-html5", color: "#E44D26", url: "https://stackoverflow.com/questions/tagged/html"},
+          {name: "CSS", icon: "fa-css3-alt", color: "#1572B6", url: "https://stackoverflow.com/questions/tagged/css"},
+          {name: "JavaScript", icon: "fa-js-square", color: "#F7DF1E", url: "https://stackoverflow.com/questions/tagged/javascript"},
+          {name: "TypeScript", icon: "fa-js", color: "#3178C6", url: "https://stackoverflow.com/questions/tagged/typescript"},
+          {name: "Python", icon: "fa-python", color: "#3776AB", url: "https://stackoverflow.com/questions/tagged/python"},
+          {name: "Java", icon: "fa-java", color: "#007396", url: "https://stackoverflow.com/questions/tagged/java"},
+          {name: "C#", icon: "fa-hashtag", color: "#68217A", url: "https://stackoverflow.com/questions/tagged/c%23"},
+          {name: "PHP", icon: "fa-php", color: "#777BB4", url: "https://stackoverflow.com/questions/tagged/php"},
+          {name: "Ruby", icon: "fa-gem", color: "#E0115F", url: "https://stackoverflow.com/questions/tagged/ruby"},
+          {name: "Go", icon: "fa-golang", color: "#00ADD8", url: "https://stackoverflow.com/questions/tagged/go"},
+          {name: "Rust", icon: "fa-rust", color: "#DEA584", url: "https://stackoverflow.com/questions/tagged/rust"},
+          {name: "Kotlin", icon: "fa-korvue", color: "#A97BFF", url: "https://stackoverflow.com/questions/tagged/kotlin"},
+          {name: "Swift", icon: "fa-swift", color: "#F05138", url: "https://stackoverflow.com/questions/tagged/swift"},
+          {name: "Dart", icon: "fa-dashcube", color: "#0175C2", url: "https://stackoverflow.com/questions/tagged/dart"},
+          {name: "SQL", icon: "fa-database", color: "#4479A1", url: "https://stackoverflow.com/questions/tagged/sql"},
+          {name: "Bash", icon: "fa-terminal", color: "#4EAA25", url: "https://stackoverflow.com/questions/tagged/bash"},
+          {name: "Scala", icon: "fa-stack-overflow", color: "#DC322F", url: "https://stackoverflow.com/questions/tagged/scala"},
+          {name: "Haskell", icon: "fa-lambda", color: "#5E5086", url: "https://stackoverflow.com/questions/tagged/haskell"},
+          {name: "Elixir", icon: "fa-droplet", color: "#6E4A7E", url: "https://stackoverflow.com/questions/tagged/elixir"},
+          {name: "R", icon: "fa-r", color: "#276DC3", url: "https://stackoverflow.com/questions/tagged/r"},
+          {name: "C", icon: "fa-c", color: "#A8B9CC", url: "https://stackoverflow.com/questions/tagged/c"},
+          {name: "C++", icon: "fa-c", color: "#00599C", url: "https://stackoverflow.com/questions/tagged/c%2b%2b", extra: "++"},
+          {name: "Perl", icon: "fa-leaf", color: "#39457E", url: "https://stackoverflow.com/questions/tagged/perl"}
+        ];
+
+        function renderCommunityLanguages() {
+          const grid = document.getElementById('community-language-grid');
+          grid.innerHTML = languageCommunities.map(lang => `
+            <a href="${lang.url}" target="_blank" rel="noopener" class="community-lang-btn" style="border-color:${lang.color};">
+              <span class="community-lang-icon"><i class="fa-brands ${lang.icon}" style="color:${lang.color};"></i>${lang.extra ? `<span class="cpp-plus">${lang.extra}</span>` : ""}</span>
+              <span class="community-lang-label">${lang.name}</span>
+            </a>
+          `).join('');
+        }
+        document.addEventListener('DOMContentLoaded', renderCommunityLanguages);
+      </script>
+    </section>
+
+    <section class="get-started-section">
+      <h2>Get Started Today</h2>
+      <p>Sign up for free and start your journey to becoming a world-class coder. Whether you are a beginner or advanced, our resources and AI assistants are here for you!</p>
+      <a href="signup.html" class="cta-btn">Create Free Account</a>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form action="/submit" method="POST" class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Codes Knowledge Spreaders. All rights reserved.</p>
+    <ul>
+      <li><a href="https://facebook.com"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+      <li><a href="https://twitter.com"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+      <li><a href="https://tiktok.com"><i class="fa-brands fa-tiktok"></i> TikTok</a></li>
+      <li><a href="https://wa.me/255700000000"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="mailto:info@codesknowledge.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
+    </ul>
+    <div class="footer-section developer-badge">
+      <div class="dev-badge">
+        <span>Developed by</span>
+        <span class="dev-name">samwel wakwanza</span>
+        <span class="badge-glow"></span>
+      </div>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

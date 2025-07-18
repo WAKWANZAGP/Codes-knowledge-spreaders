@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn JavaScript with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(8,12,18,0.92);
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #f7df1e;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #ffd700;
+    }
+    .language-heading .fa-js-square {
+      font-size: 3.2rem;
+      color: #f7df1e;
+      text-shadow: 0 4px 40px #fff59d99, 0 1px 0 #ffd700;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(20, 30, 40, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #000c;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e7e7e7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #ffd700;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(25, 33, 45, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f3f3f3;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #f7df1e;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #222c33;
+      border-radius: 0.5em;
+      background: rgba(30, 40, 55, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(247,223,30,0.06);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #f7df1e;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #f7df1e;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e7e7e7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(18, 26, 38, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #f7df1e1a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e7e7e7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #f7df1e;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #000c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #f7df1e3c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #f7df1e;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-brands fa-js-square"></i>
+      JavaScript Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning JavaScript</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> JavaScript is the language of the web—be ready for some surprises and lots of creativity!</li>
+            <li><b>Tools:</b> Use a modern browser (Chrome, Firefox, Edge) and a code editor (VS Code recommended).</li>
+            <li><b>Practice:</b> Open your browser's console (<kbd>F12</kbd>), type and run JavaScript as you learn.</li>
+            <li><b>Ask Questions:</b> Our <a href="community.html" target="_blank">community</a> is always here for your questions and ideas.</li>
+            <li><b>Take Notes:</b> Jot down new concepts, syntax, and common errors you encounter.</li>
+            <li><b>Explore:</b> Try making your own interactive web pages—start small!</li>
+            <li><b>Learn from Errors:</b> Every bug or error is a learning opportunity. Don't be afraid to experiment!</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> JavaScript Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/PkZNo7MFNFg" allowfullscreen title="JavaScript Full Course - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">JavaScript Full Course - FreeCodeCamp</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/hdI2bqOjy3c" allowfullscreen title="JavaScript Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">JavaScript Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/W6NZfCO5SIk" allowfullscreen title="JavaScript Basics"></iframe>
+            </div>
+            <div class="video-title">JavaScript Basics</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> JavaScript Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to JavaScript</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>JavaScript is a versatile, high-level programming language used to add interactivity to web pages.</li>
+              <li>Runs in browsers and on servers (with Node.js).</li>
+              <li>You can start coding JavaScript using your browser’s developer console.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Declare variables using <code>let</code>, <code>const</code>, or <code>var</code> (prefer <code>let</code> and <code>const</code>).</li>
+              <li>Common types: <b>number</b>, <b>string</b>, <b>boolean</b>, <b>object</b>, <b>array</b>, <b>null</b>, <b>undefined</b>.</li>
+              <li>Examples:
+                <pre>
+let age = 25;
+const name = "Alice";
+let isStudent = true;
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Console output: <code>console.log("Hello!");</code></li>
+              <li>Prompt user input (browser): <code>let name = prompt("Enter your name:");</code></li>
+              <li>Alerts: <code>alert("Welcome!");</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Control Flow (if, else, switch)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Conditional statements: <code>if</code>, <code>else if</code>, <code>else</code>, <code>switch</code></li>
+              <li>Comparison operators: <code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>, <code>&lt;</code>, <code>&gt;</code></li>
+              <li>
+                Example:
+                <pre>
+if (age >= 18) {
+  console.log("Adult");
+} else {
+  console.log("Minor");
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Loops (for, while, for...of)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li><code>for</code>, <code>while</code>, <code>do...while</code> loops repeat actions.</li>
+              <li>Iterate over arrays: <code>for...of</code>, <code>forEach</code></li>
+              <li>Break and continue: <code>break</code>, <code>continue</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Function declaration:
+                <pre>
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+                </pre>
+              </li>
+              <li>Arrow functions:
+                <pre>
+const add = (a, b) => a + b;
+                </pre>
+              </li>
+              <li>Functions can have parameters and return values.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Arrays and Objects</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Arrays: <code>let arr = [1, 2, 3];</code></li>
+              <li>Objects: <code>let person = { name: "Bob", age: 30 };</code></li>
+              <li>Access array elements: <code>arr[0]</code>; object properties: <code>person.name</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. DOM Manipulation</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Access HTML elements: <code>document.getElementById("myDiv")</code>, <code>document.querySelector(".class")</code></li>
+              <li>Change content: <code>element.textContent = "Hello"</code></li>
+              <li>Change styles and attributes via JS</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Events</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Add event listeners: <code>element.addEventListener('click', handler);</code></li>
+              <li>Respond to user actions: clicks, mouseover, submit, etc.</li>
+              <li>Example:
+                <pre>
+document.getElementById("btn").onclick = function() {
+  alert("Button clicked!");
+};
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Error Handling & Debugging</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>try...catch</code> blocks to handle errors.</li>
+              <li>Debug with <code>console.log()</code> and browser dev tools.</li>
+              <li>Example:
+                <pre>
+try {
+  let x = y + 1; // y is not defined
+} catch (e) {
+  console.log("Error:", e.message);
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. ES6+ Modern Features</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Let and const, arrow functions, template literals, destructuring, spread/rest, classes.</li>
+              <li>Example:
+                <pre>
+const nums = [1,2,3];
+const [a, b, c] = nums; // Destructuring
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Write readable, commented code.</li>
+              <li>Keep code DRY (Don't Repeat Yourself).</li>
+              <li>Practice regularly and build small projects.</li>
+              <li>Explore resources: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN JavaScript Docs</a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

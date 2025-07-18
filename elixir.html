@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Elixir Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Elixir with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(36, 0, 46, 0.94); /* Elixir-themed purple overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #9147c4;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #b95edb;
+    }
+    .language-heading .fa-droplet {
+      font-size: 3.2rem;
+      color: #b95edb;
+      text-shadow: 0 4px 40px #9147c488, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(62, 27, 75, 0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #340a4ccc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #f5eaff;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #b95edb;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(51, 24, 65, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f2e7fa;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #b95edb;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #6b378f;
+      border-radius: 0.5em;
+      background: rgba(70, 35, 90, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(145,71,196,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #b95edb;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #9147c4;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #f5eaff;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(34, 9, 44, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #9147c41a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #f5eaff;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #b95edb;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #300a49;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #9147c43c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #b95edb;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-droplet"></i>
+      Elixir Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Elixir</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Elixir is a functional, concurrent language—embrace immutability and a new way of thinking!</li>
+            <li><b>Tools:</b> Install Elixir and use an editor like VS Code or Vim with Elixir plugins.</li>
+            <li><b>Practice:</b> Use <code>iex</code> (Elixir shell) to experiment with code and concepts interactively.</li>
+            <li><b>Ask Questions:</b> Our <a href="community.html" target="_blank">community</a> is here to help you with Elixir, Phoenix, and OTP.</li>
+            <li><b>Take Notes:</b> Track new functional patterns, syntax, and error messages.</li>
+            <li><b>Explore:</b> Try small scripts, then build APIs with Phoenix or distributed apps with OTP.</li>
+            <li><b>Debug:</b> Read error messages fully—Elixir errors are often helpful and detailed.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Elixir Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/pBNOavRoNL0" allowfullscreen title="Elixir Programming Language - Full Course"></iframe>
+            </div>
+            <div class="video-title">Elixir Programming Language - Full Course</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/6k3Bt9dL2XY" allowfullscreen title="Elixir Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Elixir Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/9RjW4w1Mh3w" allowfullscreen title="Learn Elixir in One Video"></iframe>
+            </div>
+            <div class="video-title">Learn Elixir in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Elixir Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Elixir</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Elixir is a functional, concurrent language that runs on the Erlang VM (BEAM).</li>
+              <li>Ideal for scalable, fault-tolerant systems—think chat, IoT, distributed apps.</li>
+              <li>Syntax is friendly, inspired by Ruby.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Getting Started & Basic Syntax</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>iex</code> (Elixir REPL) for interactive learning.</li>
+              <li>
+                <pre>
+IO.puts("Hello, Elixir!")
+a = 5 + 3
+                </pre>
+              </li>
+              <li>Every variable is immutable.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Types: integers, floats, booleans, atoms (<code>:ok</code>), strings, lists, tuples, maps.</li>
+              <li>
+                <pre>
+name = "Sam"
+nums = [1, 2, 3]
+coords = {4, 5}
+info = %{name: "Sam", age: 20}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Pattern Matching</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>=</code> for pattern matching, not assignment.</li>
+              <li>
+                <pre>
+{a, b} = {1, 2}  # a = 1, b = 2
+[x, y | rest] = [1,2,3,4]  # x=1, y=2, rest=[3,4]
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Define with <code>def</code> inside a <code>defmodule</code>.</li>
+              <li>
+                <pre>
+defmodule Math do
+  def add(a, b), do: a + b
+end
+
+Math.add(2, 3)
+                </pre>
+              </li>
+              <li>Supports pattern matching and guards in function heads.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Control Flow</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if age >= 18 do
+  IO.puts("Adult")
+else
+  IO.puts("Minor")
+end
+
+case day do
+  "Mon" -> IO.puts("Monday")
+  _ -> IO.puts("Other")
+end
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Lists, Tuples, Maps</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+nums = [1, 2, 3]
+IO.inspect(Enum.map(nums, fn x -> x * 2 end))
+
+coords = {3, 4}
+info = %{name: "Sam", age: 20}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Recursion & Enum</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Recursion is used instead of loops.</li>
+              <li>Collections are transformed with <code>Enum</code> and <code>Stream</code> modules.</li>
+              <li>
+                <pre>
+Enum.reduce([1,2,3], 0, fn x, acc -> x + acc end)
+Enum.filter(1..10, fn x -> rem(x, 2) == 0 end)
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Processes & Concurrency</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Elixir uses lightweight processes for concurrency (not OS processes).</li>
+              <li>
+                <pre>
+spawn(fn -> IO.puts("Hello from a process!") end)
+send(self(), :ping)
+receive do
+  :ping -> IO.puts("Pong!")
+end
+                </pre>
+              </li>
+              <li>Learn about OTP for robust concurrent systems.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Mix & Project Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>mix new projectname</code> to scaffold projects.</li>
+              <li>Run tests: <code>mix test</code></li>
+              <li>Dependencies are managed in <code>mix.exs</code>.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Phoenix Framework</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Phoenix is Elixir's web framework for APIs and real-time apps.</li>
+              <li>Generate a new Phoenix app with <code>mix phx.new appname</code>.</li>
+              <li>Explore Channels for WebSockets and LiveView for interactive UIs.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Write idiomatic, functional code—avoid side effects and mutable data.</li>
+              <li>Explore docs: <a href="https://elixir-lang.org/learning.html" target="_blank">elixir-lang.org/learning.html</a></li>
+              <li>Practice with small projects and code katas.</li>
+              <li>Try building distributed, fault-tolerant apps to unlock Elixir's power!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

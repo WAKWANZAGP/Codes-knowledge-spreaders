@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C Programming Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn C with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(0,18,18,0.93); /* Deep teal overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #16b2b2;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #8aefff;
+    }
+    .language-heading .fa-c {
+      font-size: 3.2rem;
+      color: #16b2b2;
+      text-shadow: 0 4px 40px #16b2b299, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(10, 30, 30, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #1d3939cc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e7f7f7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #8aefff;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(20, 40, 40, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #e9ffff;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #8aefff;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #167272;
+      border-radius: 0.5em;
+      background: rgba(10, 30, 30, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(22,178,178,0.10);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16b2b2;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #16b2b2;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e7f7f7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(10, 30, 30, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #16b2b21a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e7f7f7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #8aefff;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #002020;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #16b2b23c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #8aefff;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-c"></i>
+      C Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning C</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> C is foundational but can be strict. Start with simple programs, and read errors carefully.</li>
+            <li><b>Tools:</b> Install a C compiler (gcc, clang, MSVC) and use a code editor or IDE (VS Code, Code::Blocks, etc).</li>
+            <li><b>Practice:</b> Type and run every code sample, tweaking lines to see what changes.</li>
+            <li><b>Ask Questions:</b> Get help or discuss in our <a href="community.html" target="_blank">community</a>.</li>
+            <li><b>Take Notes:</b> Note new concepts, syntax, and errors you solve.</li>
+            <li><b>Explore:</b> Try building small projects like calculators, file readers, or games.</li>
+            <li><b>Debug:</b> Use compiler warnings and debugging tools; always compile with <code>-Wall</code>.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> C Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/KJgsSFOSQv0" allowfullscreen title="C Programming Full Course - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">C Programming Full Course - FreeCodeCamp</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/ZSPZob_1TOk" allowfullscreen title="C Programming Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">C Programming Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/IRQ0BOMM5tU" allowfullscreen title="C in One Video"></iframe>
+            </div>
+            <div class="video-title">C in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> C Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to C</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>C is a procedural, compiled programming language for systems, embedded, and application programming.</li>
+              <li>Files usually have <code>.c</code> extension.</li>
+              <li>It is the foundation for C++, Java, and many other languages.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Program Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+#include &lt;stdio.h&gt;
+int main() {
+  printf("Hello, World!\n");
+  return 0;
+}
+                </pre>
+              </li>
+              <li>All C programs start with <code>main()</code> function.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Common types: <code>int</code>, <code>float</code>, <code>double</code>, <code>char</code></li>
+              <li>
+                <pre>
+int age = 21;
+float temp = 36.6f;
+double gpa = 3.89;
+char grade = 'A';
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>printf()</code> for output, <code>scanf()</code> for input.</li>
+              <li>
+                <pre>
+int n;
+printf("Enter a number: ");
+scanf("%d", &n);
+printf("You entered: %d\n", n);
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, else, switch)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if (age &gt;= 18) {
+  printf("Adult\n");
+} else {
+  printf("Minor\n");
+}
+                </pre>
+              </li>
+              <li>
+                <pre>
+switch(day) {
+  case 1:
+    printf("Monday\n");
+    break;
+  default:
+    printf("Other\n");
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, while, do-while)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+for (int i = 0; i &lt; 5; i++) {
+  printf("%d\n", i);
+}
+while (condition) {
+  // code
+}
+do {
+  // code
+} while (condition);
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+int add(int a, int b) {
+  return a + b;
+}
+                </pre>
+              </li>
+              <li>Declare functions before use, or use prototypes.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Arrays and Strings</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+int arr[5] = {1,2,3,4,5};
+printf("%d", arr[0]);
+char name[20];
+scanf("%s", name);
+                </pre>
+              </li>
+              <li>Strings are arrays of <code>char</code> ending with <code>'\0'</code>.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Pointers</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Pointers store memory addresses; use <code>*</code> and <code>&</code>.</li>
+              <li>
+                <pre>
+int x = 10;
+int *p = &x;
+printf("%d", *p); // 10
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Structs</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+struct Point {
+  int x;
+  int y;
+};
+struct Point p1 = {1, 2};
+printf("%d", p1.x);
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. File I/O</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+FILE *f = fopen("myfile.txt", "r");
+if (f) {
+  char line[100];
+  while (fgets(line, sizeof(line), f)) {
+    printf("%s", line);
+  }
+  fclose(f);
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use <code>-Wall</code> when compiling for warnings.</li>
+              <li>Keep code readable and well-commented.</li>
+              <li>Free dynamic memory (<code>free()</code>) to prevent leaks.</li>
+              <li>Explore: <a href="https://en.cppreference.com/w/c" target="_blank">cppreference.com (C section)</a></li>
+              <li>Practice by solving problems and building small programs.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

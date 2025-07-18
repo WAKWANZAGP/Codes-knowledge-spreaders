@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SQL Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn SQL with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(20, 40, 44, 0.96); /* SQL teal overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #27a6ae;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #b0f8ff;
+    }
+    .language-heading .fa-database {
+      font-size: 3.2rem;
+      color: #27a6ae;
+      text-shadow: 0 4px 40px #27a6ae99, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(32, 60, 70, 0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #16545ecc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e4fdff;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #b0f8ff;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(30, 60, 80, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #e4fdff;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #b0f8ff;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #27a6ae;
+      border-radius: 0.5em;
+      background: rgba(32, 64, 80, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(39,166,174,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #b0f8ff;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #27a6ae;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e4fdff;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(20, 40, 44, 0.99);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #27a6ae1a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e4fdff;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #b0f8ff;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #16545e;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #27a6ae3c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #b0f8ff;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-database"></i>
+      SQL Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning SQL</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> SQL is for querying, updating, and managing data in relational databases. Think in sets and tables!</li>
+            <li><b>Tools:</b> Install SQLite, MySQL, PostgreSQL, or use online playgrounds like <a href="https://sqliteonline.com/" target="_blank">SQLiteOnline</a> or <a href="https://www.db-fiddle.com/" target="_blank">DB Fiddle</a>.</li>
+            <li><b>Practice:</b> Run every query, change table data, and try custom scenarios.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> for help and discussion.</li>
+            <li><b>Take Notes:</b> Write down useful queries, error messages, and schema designs.</li>
+            <li><b>Explore:</b> Try creating, joining, and querying tables with real-world data.</li>
+            <li><b>Debug:</b> Read error messages carefully, use <code>LIMIT</code> and <code>SELECT *</code> to inspect data.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> SQL Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/HXV3zeQKqGY" allowfullscreen title="SQL Programming - Full Course"></iframe>
+            </div>
+            <div class="video-title">SQL Programming - Full Course</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/7S_tz1z_5bA" allowfullscreen title="SQL Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">SQL Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/9Pzj7Aj25lw" allowfullscreen title="SQL in One Video"></iframe>
+            </div>
+            <div class="video-title">SQL in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> SQL Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to SQL</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>SQL (Structured Query Language) is used for managing and querying relational databases.</li>
+              <li>Common for data analytics, business intelligence, and backend development.</li>
+              <li>Extensions: MySQL, PostgreSQL, SQLite, SQL Server, Oracle.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Basic Syntax & Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>SQL statements end with a semicolon. Case-insensitive, but keywords are usually UPPERCASE.</li>
+              <li>
+                <pre>
+SELECT 'Hello, SQL!' AS greeting;
+                </pre>
+              </li>
+              <li>Comments: <code>-- single line</code>, <code>/* multi-line */</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Creating and Altering Tables</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  age INTEGER
+);
+
+ALTER TABLE users ADD COLUMN email TEXT;
+                </pre>
+              </li>
+              <li>Define columns, types, and constraints.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Inserting and Updating Data</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+INSERT INTO users (name, age) VALUES ('Alice', 22);
+UPDATE users SET age = 23 WHERE name = 'Alice';
+                </pre>
+              </li>
+              <li>Use <code>DELETE FROM users WHERE ...</code> to remove rows.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Basic Queries (SELECT, WHERE, ORDER BY, LIMIT)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+SELECT * FROM users;
+SELECT name, age FROM users WHERE age > 20 ORDER BY age DESC LIMIT 5;
+                </pre>
+              </li>
+              <li>Use <code>WHERE</code> for filtering, <code>ORDER BY</code> for sorting, <code>LIMIT</code> to restrict results.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Joins (INNER, LEFT, RIGHT, FULL)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+SELECT u.name, o.amount
+FROM users u
+INNER JOIN orders o ON u.id = o.user_id;
+                </pre>
+              </li>
+              <li>Other joins: <code>LEFT JOIN</code>, <code>RIGHT JOIN</code>, <code>FULL OUTER JOIN</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Aggregation (COUNT, SUM, AVG, GROUP BY, HAVING)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+SELECT COUNT(*) FROM users;
+SELECT AVG(age) FROM users;
+SELECT age, COUNT(*) FROM users GROUP BY age HAVING COUNT(*) > 1;
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Subqueries & Nested SELECTs</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+SELECT name FROM users WHERE age = (SELECT MAX(age) FROM users);
+                </pre>
+              </li>
+              <li>Subqueries can be used in <code>SELECT</code>, <code>WHERE</code>, <code>FROM</code> clauses.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Indexes, Constraints & Keys</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+CREATE INDEX idx_name ON users(name);
+ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE(email);
+                </pre>
+              </li>
+              <li>Primary keys, foreign keys, unique, not null, check constraints.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Transactions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+BEGIN TRANSACTION;
+UPDATE users SET age = age + 1;
+COMMIT;
+                </pre>
+              </li>
+              <li>Use <code>ROLLBACK;</code> to undo.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Views & Stored Procedures</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+CREATE VIEW adult_users AS SELECT * FROM users WHERE age >= 18;
+                </pre>
+              </li>
+              <li>Stored procedures and functions are supported in some DBMSs (e.g., MySQL, PostgreSQL).</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use clear table/column names, keep queries readable and efficient.</li>
+              <li>Backup your database before making major changes.</li>
+              <li>Read docs: <a href="https://www.sqltutorial.org/" target="_blank">sqltutorial.org</a> | <a href="https://www.sqlstyle.guide/" target="_blank">sqlstyle.guide</a></li>
+              <li>Practice by writing and running your own queries!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

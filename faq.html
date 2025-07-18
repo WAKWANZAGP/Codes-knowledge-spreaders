@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ | Codes Knowledge Spreaders</title>
+  <meta name="description" content="Frequently asked questions about programming, coding, and all major programming languages.">
+  <meta name="author" content="World Class Developer" />
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .faq-hero {
+      padding-top: 100px;
+      text-align: center;
+    }
+    .faq-hero h1 { color: #00ffe7; font-size: 2.1rem; font-weight: 800; margin-bottom: 0.5em;}
+    .faq-hero p { color: #e7e7e7; font-size: 1.17rem; margin-bottom: 1.2em;}
+    .faq-section {max-width:950px; margin:2em auto 2.5em auto; background:rgba(10,10,10,0.82); border-radius:1.2rem; box-shadow:0 4px 24px #00ffe71a; padding:2.1rem 1.6rem;}
+    .faq-section h2 { color: #ffd700; font-size: 1.35rem; margin-bottom: 1.2em; font-weight: 700;}
+    .faq-list {margin:0; padding:0;}
+    .faq-list li {margin-bottom: 1.2em; list-style:none;}
+    .faq-q {font-weight:700; color:#00ffe7; cursor:pointer;}
+    .faq-a {margin-top:0.25em; color:#e7e7e7; display:none;}
+    .faq-q.open + .faq-a {display:block;}
+    .faq-language-list {display:flex;flex-wrap:wrap;gap:1em 2em;justify-content:center;}
+    .faq-language-item {background:rgba(20,20,30,0.94); border-radius:0.8em; margin-bottom:2em;min-width:260px;max-width:320px;flex:1 1 290px;box-shadow:0 2px 10px #00ffe73a;}
+    .faq-language-title {font-size:1.1em; font-weight:700; color:#00ffe7; text-align:center; margin:1em 0;}
+    .faq-dropdown {margin:0 0 1em 0;}
+    .faq-dropdown summary {cursor:pointer; font-weight:700; color:#ffd700; margin-bottom:0.5em;}
+    .faq-dropdown details {margin-bottom:1em;}
+    .faq-dropdown[open] summary {color:#ff00ea;}
+    .faq-language-item details summary {outline:none;}
+    .cta-faq {display:inline-block;background:linear-gradient(90deg,#00ffe7 30%,#ff00ea 100%);color:#101820;font-weight:700;border-radius:10px;padding:0.6em 1.7em;margin:1.2em 0;font-size:1.13em;letter-spacing:1px;text-decoration:none;}
+    @media (max-width:1000px) {.faq-language-list{flex-direction:column;align-items:center;}}
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo-title">
+        <a href="index.html" class="logo-btn" aria-label="Home">
+          <div class="school-logo-anim" tabindex="0">
+            <img src="logo2.png" alt="Codes Knowledge Spreaders Logo" class="logo-img"/>
+            <span class="logo-glow"></span>
+          </div>
+        </a>
+        <span class="school-title">CODES KNOWLEDGE SPREADERS</span>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <i class="fa fa-bars"></i>
+        </button>
+        <ul class="nav-list">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="courses.html">COURSES</a></li>
+          <li><a href="faq.html" class="active">FAQ</a></li>
+          <li><a href="community.html">COMMUNITY</a></li>
+        </ul>
+      </nav>
+      <div class="header-features">
+        <div class="header-theme">
+          <label for="theme-select">Theme:</label>
+          <select id="theme-select" aria-label="Theme switcher">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="header-search">
+          <input type="text" id="ai-search" placeholder="Search platform, courses, FAQs, or answers..." aria-label="AI Search" autocomplete="off"/>
+          <button id="ai-search-btn" aria-label="Run AI Search"><i class="fa fa-search"></i></button>
+          <div id="ai-search-results"></div>
+        </div>
+        <div class="header-voice">
+          <button class="voice-btn" title="Voice Search" aria-label="Voice Search">
+            <i class="fas fa-microphone"></i>
+          </button>
+        </div>
+        <div class="header-chat">
+          <button id="open-chatbot" class="open-chatbot" aria-label="Open AI Chat"><i class="fa-solid fa-message"></i> Ask AI</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <aside id="chatbot-container" class="chatbot-container" aria-label="AI Chatbot" style="display:none;">
+    <div class="chatbot-header">
+      <span>Smart AI Assistant</span>
+      <button id="close-chatbot" aria-label="Close Chatbot">&times;</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages"></div>
+    <form class="chatbot-form" onsubmit="event.preventDefault(); sendChatbotMessage();">
+      <input id="chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" aria-label="Chatbot Input"/>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </aside>
+  <main>
+    <section class="faq-hero">
+      <h1>Frequently Asked Questions (FAQ)</h1>
+      <p>
+        Welcome to the FAQ! Here you’ll find answers to all the essential questions about programming and popular languages.<br>
+        <span class="free-badge"><i class="fa-solid fa-crown"></i> 100% Free. Learn, ask, and code with confidence! <i class="fa-solid fa-bolt"></i></span>
+      </p>
+      <a class="cta-faq" href="courses.html">Start Learning Now — It's Free!</a>
+    </section>
+    <section class="faq-section">
+      <h2>General Programming Questions</h2>
+      <ul class="faq-list">
+        <li>
+          <div class="faq-q">1. What is a programming language?</div>
+          <div class="faq-a">A programming language is a formal language comprising a set of instructions that produce various outputs. They are used to implement algorithms and interact with computers.</div>
+        </li>
+        <li>
+          <div class="faq-q">2. Which programming language should I start with?</div>
+          <div class="faq-a">Popular beginner-friendly choices are Python, JavaScript, and HTML/CSS. They are widely used, easy to learn, and have a lot of resources and community support.</div>
+        </li>
+        <li>
+          <div class="faq-q">3. How long does it take to learn programming?</div>
+          <div class="faq-a">It depends on your dedication and the language you choose. Basic proficiency can be achieved in a few weeks; mastery can take months or years. Consistency and practice are key!</div>
+        </li>
+        <li>
+          <div class="faq-q">4. Do I need a degree to become a programmer?</div>
+          <div class="faq-a">No. Many successful programmers are self-taught. What matters most is your skills, portfolio, and ability to solve problems.</div>
+        </li>
+        <li>
+          <div class="faq-q">5. What is the difference between frontend and backend?</div>
+          <div class="faq-a">Frontend refers to the user-facing parts of a website (HTML, CSS, JavaScript), while backend is the server-side logic, databases, and APIs (Python, Java, PHP, etc).</div>
+        </li>
+        <li>
+          <div class="faq-q">6. What are frameworks and libraries?</div>
+          <div class="faq-a">A framework is a reusable set of tools and standards for building applications, while a library is a collection of functions you can call from your code. Both help you code faster and better.</div>
+        </li>
+        <li>
+          <div class="faq-q">7. How do I practice coding?</div>
+          <div class="faq-a">You can practice on platforms like Codes Knowledge Spreaders, freeCodeCamp, LeetCode, HackerRank, or by building your own projects and contributing to open source.</div>
+        </li>
+        <li>
+          <div class="faq-q">8. What is open source?</div>
+          <div class="faq-a">Open source means the source code is freely available for anyone to use, modify, and distribute. It fosters community collaboration and innovation.</div>
+        </li>
+        <li>
+          <div class="faq-q">9. Why is version control (like Git) important?</div>
+          <div class="faq-a">Version control helps you track changes, collaborate with others, and revert to previous states if something goes wrong. Git is the most popular system for this.</div>
+        </li>
+        <li>
+          <div class="faq-q">10. Can I become a developer for free?</div>
+          <div class="faq-a">Absolutely! There are plenty of free resources and communities like this platform to help you learn and grow at zero cost.</div>
+        </li>
+        <li>
+          <div class="faq-q">11. How do I stay motivated while learning?</div>
+          <div class="faq-a">Set clear goals, build real projects, join communities, and celebrate small wins. Remember, every great developer started as a beginner!</div>
+        </li>
+      </ul>
+    </section>
+    <section class="faq-section">
+      <h2>Language-Specific Questions</h2>
+      <div class="faq-language-list">
+        <!-- Example block for one language, copy and adapt for others -->
+        <div class="faq-language-item">
+          <div class="faq-language-title"><i class="fa-brands fa-python"></i> Python</div>
+          <div class="faq-dropdown">
+            <details>
+              <summary>What is Python?</summary>
+              <div>Python is a high-level, interpreted programming language renowned for its readability and versatility. It's used in web development, data science, AI, automation, and more.</div>
+            </details>
+            <details>
+              <summary>How do I install Python?</summary>
+              <div>Download the installer from <a href="https://python.org" target="_blank">python.org</a> and follow the instructions for your OS. Most Linux/Mac systems come with Python pre-installed.</div>
+            </details>
+            <details>
+              <summary>What is a variable in Python?</summary>
+              <div>A variable is a name that refers to a value stored in memory. You create one by assigning a value, e.g., <code>x = 5</code>.</div>
+            </details>
+            <details>
+              <summary>How do I write a function in Python?</summary>
+              <div>Use <code>def</code> keyword, e.g., <code>def greet(name): print("Hello, " + name)</code>.</div>
+            </details>
+            <details>
+              <summary>What is a list in Python?</summary>
+              <div>A list is a mutable, ordered collection of items. E.g., <code>my_list = [1, 2, 3]</code>.</div>
+            </details>
+            <details>
+              <summary>How do I install packages in Python?</summary>
+              <div>Use pip: <code>pip install package_name</code>.</div>
+            </details>
+            <details>
+              <summary>What is PEP8?</summary>
+              <div>PEP8 is the official style guide for Python code. It helps maintain readability and consistency.</div>
+            </details>
+            <details>
+              <summary>What's the difference between a list and a tuple?</summary>
+              <div>Lists are mutable (can be changed), tuples are immutable (cannot be changed).</div>
+            </details>
+            <details>
+              <summary>What is a dictionary in Python?</summary>
+              <div>A dictionary is a collection of key-value pairs. E.g., <code>my_dict = {'name': 'Alice', 'age': 22}</code>.</div>
+            </details>
+            <details>
+              <summary>How do I handle errors?</summary>
+              <div>Use try-except blocks: <code>try: ... except Exception as e: ...</code></div>
+            </details>
+            <details>
+              <summary>What is None in Python?</summary>
+              <div><code>None</code> is a special constant representing the absence of a value or a null value.</div>
+            </details>
+            <details>
+              <summary>How do I read/write files in Python?</summary>
+              <div>Use the built-in <code>open()</code> function. E.g., <code>with open("file.txt", "r") as f: data = f.read()</code>.</div>
+            </details>
+            <details>
+              <summary>How do I make a loop in Python?</summary>
+              <div>Use <code>for</code> or <code>while</code> loops. Example: <code>for i in range(5): print(i)</code></div>
+            </details>
+            <details>
+              <summary>What is a module?</summary>
+              <div>A module is a Python file containing definitions and statements. You can import modules using <code>import module_name</code>.</div>
+            </details>
+            <details>
+              <summary>How do I comment code?</summary>
+              <div>Use <code>#</code> for single-line comments and triple quotes for multi-line docstrings.</div>
+            </details>
+            <details>
+              <summary>Is Python good for web development?</summary>
+              <div>Yes! With frameworks like Django and Flask, you can build powerful web applications.</div>
+            </details>
+            <details>
+              <summary>How do I run a Python script?</summary>
+              <div>Open terminal/cmd and type <code>python script.py</code>.</div>
+            </details>
+            <details>
+              <summary>What is indentation, and why is it important?</summary>
+              <div>Indentation (spaces/tabs at the start of a line) defines code blocks. Python relies on it for code structure.</div>
+            </details>
+            <details>
+              <summary>What is object-oriented programming (OOP)?</summary>
+              <div>OOP organizes code using classes and objects. Python supports OOP with classes, inheritance, etc.</div>
+            </details>
+            <details>
+              <summary>How can I practice Python?</summary>
+              <div>Try our daily coding challenges, build small projects, or use platforms like LeetCode and HackerRank.</div>
+            </details>
+          </div>
+        </div>
+        <!-- Repeat .faq-language-item for each language, using unique questions and answers. -->
+        <!-- For brevity, only Python is shown here. Add other languages similarly, each with 20+ Q&A in dropdowns. -->
+      </div>
+      <div style="text-align:center;margin:2em 0;">
+        <a class="cta-faq" href="courses.html">Explore More Languages & FAQs — Start Now!</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 World Class Developer. All rights reserved.</p>
+    <ul>
+      <li><a href="https://facebook.com"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+      <li><a href="https://twitter.com"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+      <li><a href="https://tiktok.com"><i class="fa-brands fa-tiktok"></i> TikTok</a></li>
+      <li><a href="https://wa.me/255700000000"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="mailto:info@codesknowledge.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
+    </ul>
+    <div class="footer-section developer-badge">
+      <div class="dev-badge">
+        <span>Developed by</span>
+        <span class="dev-name">samwel wakwanza</span>
+        <span class="badge-glow"></span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // FAQ accordion toggle for general questions
+    document.addEventListener("DOMContentLoaded", function() {
+      document.querySelectorAll('.faq-q').forEach(function(q){
+        q.addEventListener('click', function(){
+          q.classList.toggle('open');
+          const ans = q.nextElementSibling;
+          if(ans) ans.style.display = ans.style.display === "block" ? "none" : "block";
+        });
+      });
+    });
+    // Add your main.js here for navigation, AI, etc.
+  </script>
+  <script src="main.js"></script>
+</body>
+</html>

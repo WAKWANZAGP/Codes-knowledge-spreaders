@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Julia Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Julia with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body { min-height: 100vh; margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: url('coding-bg.jpg') center center/cover no-repeat fixed; position: relative;}
+    .class-dark-overlay { min-height: 100vh; width: 100vw; background: rgba(8,12,18,0.92); position: fixed; top: 0; left: 0; z-index: 0;}
+    .class-content-container { position: relative; z-index: 2; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; padding-bottom: 4em;}
+    .language-heading { display: flex; align-items: center; gap: 20px; margin: 3rem 0 1.2rem 0; font-size: 2.8rem; font-weight: 900; letter-spacing: 2px; color: #ffd700; text-shadow: 0 8px 32px #000, 0 1px 0 #00ffe7;}
+    .language-heading .fa-j { font-size: 3.2rem; color: #00ffe7; text-shadow: 0 4px 40px #005c7e99, 0 1px 0 #ffd700; animation: floatIcon 2.5s infinite ease-in-out alternate;}
+    @keyframes floatIcon { to { transform: translateY(-16px) scale(1.08);} from { transform: translateY(0);}}
+    .intro-warning-box { background: rgba(20, 30, 40, 0.96); border-radius: 16px; box-shadow: 0 6px 32px #000c; max-width: 700px; margin-bottom: 2em; padding: 2.1em 2em 1.2em 2em; color: #e7e7e7; font-size: 1.18rem; font-weight: 500; position: relative;}
+    .intro-warning-box .fa-lightbulb { color: #ffd700; font-size: 2.1rem; margin-bottom: 0.6em; display: block; text-align: center; animation: blinkbulb 1.8s infinite alternate;}
+    @keyframes blinkbulb { 0% { opacity: 0.7;} 100% { opacity: 1;}}
+    .toggle-section { background: rgba(25, 33, 45, 0.97); border-radius: 14px; box-shadow: 0 4px 24px #000a; margin: 1.5em auto; max-width: 900px; padding: 2.2em 2em 2.2em 2em; color: #f3f3f3; width: 98%; transition: box-shadow 0.2s;}
+    .toggle-section h2 { color: #00ffe7; font-size: 1.55rem; margin-top: 0; margin-bottom: 1.5em; text-align: center; letter-spacing: 0.5px;}
+    details.toggle { margin-bottom: 1.3em; border-bottom: 1px solid #222c33; border-radius: 0.5em; background: rgba(30, 40, 55, 0.88); transition: background 0.18s; overflow: hidden;}
+    details.toggle[open] { background: rgba(0,255,231,0.06);}
+    summary.toggle-summary { cursor: pointer; font-weight: 700; color: #ffd700; font-size: 1.13em; padding: 1em 1.2em; outline: none; background: none; border: none; transition: background 0.13s; position: relative;}
+    summary.toggle-summary::marker, summary.toggle-summary::-webkit-details-marker { color: #00ffe7; font-size: 1.3em;}
+    details.toggle .toggle-content { padding: 0 1.2em 1em 1.7em; color: #e7e7e7; font-size: 1.07em; line-height: 1.65;}
+    .video-notes-grid { display: flex; flex-wrap: wrap; gap: 2.5em; justify-content: center; margin-top: 2em; width: 98%; max-width: 1200px;}
+    .tutorials-section, .notes-section { flex: 1 1 340px; background: rgba(18, 26, 38, 0.97); border-radius: 14px; box-shadow: 0 2px 24px #00ffe71a; padding: 2em 1.7em 1.7em 1.7em; min-width: 320px; max-width: 520px; margin-bottom: 2em; color: #e7e7e7; position: relative;}
+    .tutorials-section h2, .notes-section h2 { color: #ffd700; font-size: 1.28rem; margin-bottom: 1.3em; font-weight: 700; text-align: center;}
+    .video-list { display: flex; flex-direction: column; gap: 1.2em; align-items: center;}
+    .video-thumb { background: #000c; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px #00ffe73c; width: 100%; max-width: 380px; aspect-ratio: 16/9; margin-bottom: 0.5em; position: relative;}
+    .video-thumb iframe { width: 100%; height: 100%; border: none; border-radius: 12px; display: block; background: #000;}
+    .video-title { color: #00ffe7; font-weight: 600; font-size: 1.1em; margin-bottom: 0.2em; text-align: center; letter-spacing: 0.3px;}
+    @media (max-width:1100px) { .video-notes-grid { flex-direction: column; align-items: center;}}
+    @media (max-width:700px) { .class-content-container { padding: 0 0.15em;} .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;} .language-heading { font-size:2rem;}}
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-j"></i>
+      Julia Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Julia</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Julia is designed for high-performance numerical and scientific computing. Be ready to explore both scripting and compiled code concepts.</li>
+            <li><b>Tools:</b> Install Julia (<a href="https://julialang.org/downloads/" target="_blank">julialang.org</a>) and use the REPL or an IDE such as VS Code with Julia extension.</li>
+            <li><b>Practice:</b> Type and run every code example. Experiment with changing code and see results.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> to discuss challenges and share code.</li>
+            <li><b>Take Notes:</b> Document important packages, methods, and troubleshooting steps.</li>
+            <li><b>Stay Curious:</b> Try small projects, especially in math, science, or data analysis.</li>
+            <li><b>Don’t Fear Errors:</b> Read error messages and learn from them. Search for solutions online.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Julia Video Tutorials</h2>
+        <div class="video-list">
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/pnN6k9Sgb8g" allowfullscreen title="Julia Programming for Beginners"></iframe>
+            </div>
+            <div class="video-title">Julia Programming for Beginners</div>
+          </div>
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/6gD6qvK-0mc" allowfullscreen title="Julia Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Julia Tutorial for Beginners</div>
+          </div>
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/bzja9fQWzdA" allowfullscreen title="Julia Programming - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">Julia Programming - FreeCodeCamp</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Julia Notes & Topics</h2>
+        <details class="toggle"><summary class="toggle-summary">1. Introduction to Julia</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>What is Julia? High-level, high-performance programming language for technical computing.</li>
+            <li>Key features: speed, syntax similar to Matlab/Python, open source, great for data science and numerics.</li>
+            <li>First steps: Installing Julia, starting the REPL, using JuliaBox or Jupyter.</li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">2. Variables and Data Types</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Declaring variables: <code>x = 5</code>, <code>name = "Alice"</code></li>
+            <li>Primitive types: <b>Int</b>, <b>Float64</b>, <b>Bool</b>, <b>Char</b>, <b>String</b></li>
+            <li>Type checking: <code>typeof(x)</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">3. Input and Output</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Printing: <code>println("Hello, world!")</code></li>
+            <li>User input: <code>name = readline()</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">4. Control Flow (if, elseif, else)</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Conditional statements: <code>if</code>, <code>elseif</code>, <code>else</code>, <code>end</code></li>
+            <li>Comparison operators: <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code></li>
+            <li>Example:<br>
+<code>
+if age &gt;= 18<br>
+&nbsp;&nbsp;println("Adult")<br>
+else<br>
+&nbsp;&nbsp;println("Minor")<br>
+end
+</code>
+            </li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">5. Loops (for, while)</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><code>for i in 1:5</code> — Numeric for loop</li>
+            <li><code>while condition</code> — While loop</li>
+            <li>Breaking and continuing loops: <code>break</code>, <code>continue</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">6. Functions</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Defining: <code>function greet(name) ... end</code></li>
+            <li>Calling: <code>greet("Alice")</code></li>
+            <li>Return values: <code>return</code></li>
+            <li>Anonymous functions: <code>x -> x^2</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">7. Arrays, Tuples, and Dictionaries</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Arrays: <code>a = [1, 2, 3]</code></li>
+            <li>Tuples: <code>t = (1, "Alice", true)</code></li>
+            <li>Dictionaries: <code>d = Dict("a" => 1, "b" => 2)</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">8. Modules and Packages</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Modules group functions, types, and constants.</li>
+            <li>Importing packages: <code>using Plots</code>, <code>import CSV</code></li>
+            <li>Adding packages with Pkg: <code>using Pkg; Pkg.add("PackageName")</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">9. File Handling</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Opening files: <code>open("file.txt", "r")</code></li>
+            <li>Reading: <code>readline(file)</code>, <code>read(file, String)</code></li>
+            <li>Writing: <code>write(file, "text")</code></li>
+            <li>Using <code>do</code> block for automatic closing</li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">10. Plotting and Visualization</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Plotting with <code>Plots.jl</code>: <code>using Plots; plot(x, y)</code></li>
+            <li>Basic customization: labels, titles, grids</li>
+            <li>Other packages: <code>Gadfly</code>, <code>PyPlot</code></li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">11. Error Handling</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Try-catch: <code>try ... catch e ... end</code></li>
+            <li>Throwing errors: <code>error("Message")</code></li>
+            <li>Debugging tips: using stacktraces</li>
+          </ul>
+        </div>
+        </details>
+        <details class="toggle"><summary class="toggle-summary">12. Performance and Metaprogramming</summary>
+        <div class="toggle-content">
+          <ul>
+            <li>Type declarations for speed</li>
+            <li>Benchmarking: <code>@time</code>, <code>BenchmarkTools</code></li>
+            <li>Macros: <code>@macro</code>, metaprogramming basics</li>
+          </ul>
+        </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codes Knowledge Spreaders</title>
+    <meta name="description" content="A well-structured website with all essential HTML tags, designed to look professional.">
+    <meta name="author" content="World Class Developer">
+    <link rel="icon" href="logo2.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-title">
+                <a href="index.html" class="logo-btn" aria-label="Home">
+                    <div class="school-logo-anim" tabindex="0">
+                        <img src="logo2.png" alt="Codes Knowledge Spreaders Logo" class="logo-img"/>
+                        <span class="logo-glow"></span>
+                    </div>
+                </a>
+                <span class="school-title">CODES KNOWLEDGE SPREADERS</span>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="courses.html">COURSES</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="community.html">COMMUNITY</a></li>
+                    <li>
+                        <div class="theme-switcher">
+                            <label for="theme-select">Theme:</label>
+                            <select id="theme-select">
+                                <option value="system">System</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="header-feature-search">
+                        <input type="text" id="ai-search" placeholder="Search for information..." autocomplete="off" aria-label="AI Search"/>
+                        <button id="ai-search-btn" aria-label="Run AI Search"><i class="fa fa-search"></i></button>
+                        <div id="ai-search-results"></div>
+                    </li>
+                    <li>
+                        <button class="voice-bar" id="start-voice" title="Voice Conversation" aria-label="Voice Conversation">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <input type="text" id="voice-input" placeholder="Your spoken question will appear here...">
+                    </li>
+                    <li>
+                        <button onclick="openChatbot()" class="ask-coders-btn"><i class="fa-solid fa-message"></i> Ask CODERS</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Chatbot Widget -->
+    <aside id="chatbot-container" class="chatbot-container" aria-label="AI Chatbot" style="display:none;">
+        <div class="chatbot-header">
+            <span>Smart AI Assistant</span>
+            <button id="close-chatbot" aria-label="Close Chatbot">&times;</button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages"></div>
+        <form class="chatbot-form" onsubmit="event.preventDefault(); sendChatbotMessage();">
+            <input id="chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" aria-label="Chatbot Input"/>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+    </aside>
+    <main>
+        <!-- Site Introduction Section -->
+        <section class="intro-section">
+            <div class="intro-box">
+                <div class="intro-icon">
+                    <i class="fa-solid fa-graduation-cap" style="color:#ffd700;"></i>
+                </div>
+                <h1>Welcome to <span style="color:#00ffe7;">Codes Knowledge Spreaders</span></h1>
+                <p>
+                  <span class="intro-highlight">
+                    <i class="fa-solid fa-bolt" style="color:#ff00ea;"></i> Learn, Code, and Connect — for Free!
+                  </span>
+                  <br>
+                  Unlock your programming potential with daily challenges, interactive courses, and smart AI assistance. Join a vibrant student community, earn certifications, and get ahead in your coding journey today!
+                </p>
+                <div class="intro-actions">
+                  <a href="courses.html" class="cta-btn">
+                    <i class="fa-solid fa-book-open"></i> Explore Courses
+                  </a>
+                  <a href="community.html" class="cta-btn secondary">
+                    <i class="fa-solid fa-users"></i> Join Community
+                  </a>
+                </div>
+                <div class="intro-badges">
+                  <span class="free-badge">
+                    <i class="fa-solid fa-crown"></i> 100% Free
+                  </span>
+                  <span class="ai-badge">
+                    <i class="fa-solid fa-robot"></i> AI Powered
+                  </span>
+                  <span class="challenge-badge">
+                    <i class="fa-solid fa-fire"></i> Daily Challenges
+                  </span>
+                </div>
+            </div>
+        </section>
+        <!-- Features Section -->
+        <section class="features-section">
+            <a href="daily-challenges.html" class="feature-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Daily Coding Challenges</h3>
+                <p>Solve new challenges every day and boost your problem-solving skills with instant feedback.</p>
+            </a>
+            <a href="community.html" class="feature-card">
+                <i class="fa-solid fa-users"></i>
+                <h3>Student Community</h3>
+                <p>Collaborate, discuss, and share knowledge with coders from all over the world on our community platform.</p>
+            </a>
+            <a href="ai-assistant.html" class="feature-card">
+                <i class="fa-solid fa-brain"></i>
+                <h3>AI Q&A Assistant</h3>
+                <p>Ask any coding question and get smart, instant answers from our AI-powered chatbot and search assistant.</p>
+            </a>
+            <a href="certifications.html" class="feature-card">
+                <i class="fa-solid fa-certificate"></i>
+                <h3>Certifications</h3>
+                <p>Earn certificates as you complete courses and challenges, and showcase your achievements.</p>
+            </a>
+        </section>
+       </section>
+                <section class="languages-container">
+    <!-- HTML -->
+   <a href="htm.html" class="lang-box html">
+  <div class="lang-icon"><i class="fa-brands fa-html5" style="color:#E44D26"></i></div>
+  <h2>HTML</h2>
+  <p>Learn the basics of building web pages and structuring the web. HTML is the first and most essential language for every developer.</p>
+  <span class="cta">Start with HTML today!</span>
+</a>
+<a href="css.html" class="lang-box css">
+  <div class="lang-icon"><i class="fa-brands fa-css3-alt" style="color:#1572B6"></i></div>
+  <h2>CSS</h2>
+  <p>Make your website attractive! CSS allows you to change the appearance and style of your website with creative designs.</p>
+  <span class="cta">Build beauty with CSS!</span>
+</a>
+<a href="javascript.html" class="lang-box javascript">
+  <div class="lang-icon"><i class="fa-brands fa-js-square" style="color:#F7DF1E"></i></div>
+  <h2>JavaScript</h2>
+  <p>Add life to your websites. JavaScript enables your site to interact with users and build modern apps.</p>
+  <span class="cta">Learn JavaScript and make your website dynamic!</span>
+</a>
+<a href="python.html" class="lang-box python">
+  <div class="lang-icon"><i class="fa-brands fa-python" style="color:#3776AB"></i></div>
+  <h2>Python</h2>
+  <p>A simple yet powerful language. Python is used in AI, Data Science, Web, and Automation. It's perfect for both beginners and experts.</p>
+  <span class="cta">Start your Python journey!</span>
+</a>
+<a href="java.html" class="lang-box java">
+  <div class="lang-icon"><i class="fa-brands fa-java" style="color:#007396"></i></div>
+  <h2>Java</h2>
+  <p>Build large business systems, Android apps, and more. Java is an enterprise language used worldwide.</p>
+  <span class="cta">Discover the power of Java!</span>
+</a>
+<a href="c_hash.html" class="lang-box csharp">
+  <div class="lang-icon"><i class="fa-solid fa-hashtag" style="color:#68217A"></i></div>
+  <h2>C#</h2>
+  <p>Great for software and game development using Unity. C# is popular for building Windows applications.</p>
+  <span class="cta">Learn C# and create games!</span>
+</a>
+<a href="php.html" class="lang-box php">
+  <div class="lang-icon"><i class="fa-brands fa-php" style="color:#777BB4"></i></div>
+  <h2>PHP</h2>
+  <p>Create server-side web applications. PHP powers WordPress and many popular websites around the world.</p>
+  <span class="cta">Master PHP, build powerful web apps!</span>
+</a>
+<a href="ruby.html" class="lang-box ruby">
+  <div class="lang-icon"><i class="fa-brands fa-gem" style="color:#E0115F"></i></div>
+  <h2>Ruby</h2>
+  <p>Enjoy easy, clean code with frameworks like Ruby on Rails. Ruby is friendly for those who love readable code.</p>
+  <span class="cta">Start with Ruby today!</span>
+</a>
+<a href="go.html" class="lang-box go">
+  <div class="lang-icon"><i class="fa-brands fa-golang" style="color:#00ADD8"></i></div>
+  <h2>Go</h2>
+  <p>Run efficient and scalable systems with Go (Golang). Perfect for backend, networking, and cloud services.</p>
+  <span class="cta">Achieve efficiency with Go!</span>
+</a>
+<a href="rust.html" class="lang-box rust">
+  <div class="lang-icon"><i class="fa-brands fa-rust" style="color:#DEA584"></i></div>
+  <h2>Rust</h2>
+  <p>Learn a language focused on security and speed. Rust is great for systems programming.</p>
+  <span class="cta">Choose safety with Rust!</span>
+</a>
+<a href="kotlin.html" class="lang-box kotlin">
+  <div class="lang-icon"><i class="fa-brands fa-korvue" style="color:#A97BFF"></i></div>
+  <h2>Kotlin</h2>
+  <p>Kotlin is the official language for Android app development—modern, concise, and safe for backend too.</p>
+  <span class="cta">Develop Android apps with Kotlin!</span>
+</a>
+<a href="swift.html" class="lang-box swift">
+  <div class="lang-icon"><i class="fa-brands fa-swift" style="color:#F05138"></i></div>
+  <h2>Swift</h2>
+  <p>Choose Swift to build iOS and macOS apps. A modern, safe, and powerful language from Apple.</p>
+  <span class="cta">Learn Swift, create iOS apps!</span>
+</a>
+<a href="typescrip.html" class="lang-box typescript">
+  <div class="lang-icon"><i class="fa-brands fa-js" style="color:#3178C6"></i></div>
+  <h2>TypeScript</h2>
+  <p>TypeScript is enhanced JavaScript with type safety. Used in large projects and frameworks like Angular & React.</p>
+  <span class="cta">Get the power of TypeScript!</span>
+</a>
+<a href="dart.html" class="lang-box dart">
+  <div class="lang-icon"><i class="fa-brands fa-dashcube" style="color:#0175C2"></i></div>
+  <h2>Dart</h2>
+  <p>Dart is great for developing mobile (Flutter), web, and desktop apps. Easy to learn and high performing.</p>
+  <span class="cta">Build apps with Dart!</span>
+</a>
+<a href="sql.html" class="lang-box sql">
+  <div class="lang-icon"><i class="fa-solid fa-database" style="color:#4479A1"></i></div>
+  <h2>SQL</h2>
+  <p>SQL is essential for storing and analyzing data. Learn SQL to master database management and data analysis.</p>
+  <span class="cta">Analyze data with SQL!</span>
+</a>
+<a href="bash.html" class="lang-box bash">
+  <div class="lang-icon"><i class="fa-solid fa-terminal" style="color:#4EAA25"></i></div>
+  <h2>Bash</h2>
+  <p>Bash is crucial for automation, DevOps, and daily tasks on Linux/Unix. Learn powerful scripting!</p>
+  <span class="cta">Automate with Bash!</span>
+</a>
+<a href="scala.html" class="lang-box scala">
+  <div class="lang-icon"><i class="fa-brands fa-stack-overflow" style="color:#DC322F"></i></div>
+  <h2>Scala</h2>
+  <p>Scala combines the power of functional and object-oriented programming. Widely used in Big Data (Spark).</p>
+  <span class="cta">Explore Scala and Big Data!</span>
+</a>
+<a href="haskell.html" class="lang-box haskell">
+  <div class="lang-icon"><i class="fa-solid fa-lambda" style="color:#5E5086"></i></div>
+  <h2>Haskell</h2>
+  <p>Learn pure functional programming and the strength of mathematical logic. Haskell is for deep coding concepts.</p>
+  <span class="cta">Gain insight into Haskell!</span>
+</a>
+<a href="elixir.html" class="lang-box elixir">
+  <div class="lang-icon"><i class="fa-solid fa-droplet" style="color:#6E4A7E"></i></div>
+  <h2>Elixir</h2>
+  <p>Elixir is perfect for scalable and concurrent systems. Used in real-time apps like chat and IoT.</p>
+  <span class="cta">Build scalable apps with Elixir!</span>
+</a>
+<a href="r.html" class="lang-box r-lang">
+  <div class="lang-icon"><i class="fa-solid fa-r" style="color:#276DC3"></i></div>
+  <h2>R</h2>
+  <p>R is ideal for data science, statistics, and machine learning. Learn to analyze and visualize data deeply.</p>
+  <span class="cta">Analyze data with R!</span>
+</a>
+<a href="c.html" class="lang-box c-lang">
+  <div class="lang-icon"><i class="fa-solid fa-c" style="color:#A8B9CC"></i></div>
+  <h2>C</h2>
+  <p>C is an old but powerful language—the foundation of many OS and tools. Great for systems, drivers, and embedded programming.</p>
+  <span class="cta">Master programming basics with C!</span>
+</a>
+<a href="cpp.html" class="lang-box cpp-lang">
+  <div class="lang-icon"><i class="fa-solid fa-c" style="color:#00599C"></i><span class="cpp-plus">++</span></div>
+  <h2>C++</h2>
+  <p>C++ is for game engines, high-performance systems, and applications that need speed and memory control.</p>
+  <span class="cta">Harness the power of C++!</span>
+</a>
+<a href="perl.html" class="lang-box perl">
+  <div class="lang-icon"><i class="fa-solid fa-leaf" style="color:#39457E"></i></div>
+  <h2>Perl</h2>
+  <p>Perl is excellent for text processing, scripting, and automation. Also used in sysadmin and bioinformatics.</p>
+  <span class="cta">Do magic with Perl!</span>
+</a>
+ <!-- New: MATLAB -->
+  <a href="matlab.html" class="lang-box matlab">
+    <div class="lang-icon"><i class="fa-solid fa-square-root-variable" style="color:#e16737"></i></div>
+    <h2>MATLAB</h2>
+    <p>MATLAB is powerful for numerical computing, simulations, and data visualization, widely used in engineering and science.</p>
+    <span class="cta">Explore MATLAB for engineering!</span>
+  </a>
+  <!-- New: Shell -->
+  <a href="shell.html" class="lang-box shell">
+    <div class="lang-icon"><i class="fa-solid fa-terminal" style="color:#2c8ebb"></i></div>
+    <h2>Shell</h2>
+    <p>Shell scripting helps automate repetitive tasks and manage systems efficiently. Essential for sysadmins and power users.</p>
+    <span class="cta">Automate with Shell!</span>
+  </a>
+  <!-- New: Julia -->
+  <a href="julia.html" class="lang-box julia">
+    <div class="lang-icon"><i class="fa-brands fa-jedi" style="color:#9558b2"></i></div>
+    <h2>Julia</h2>
+    <p>Julia is designed for high-performance numerical analysis and computational science. Fast and easy for data scientists.</p>
+    <span class="cta">Try Julia for fast math!</span>
+  </a>
+  <!-- New: Assembly -->
+  <a href="assembly.html" class="lang-box assembly">
+    <div class="lang-icon"><i class="fa-solid fa-microchip" style="color:#a89f9f"></i></div>
+    <h2>Assembly</h2>
+    <p>Learn how computers work at the lowest level. Assembly is key for embedded systems, OS, and performance-critical code.</p>
+    <span class="cta">Dive deep with Assembly!</span>
+  </a>
+  <!-- New: Fortran -->
+  <a href="fortran.html" class="lang-box fortran">
+    <div class="lang-icon"><i class="fa-solid fa-flask" style="color:#6366f1"></i></div>
+    <h2>Fortran</h2>
+    <p>Fortran excels in scientific and numerical computing. Still widely used in physics, engineering, and high-performance computing.</p>
+    <span class="cta">Explore science with Fortran!</span>
+  </a>
+  <!-- New: COBOL -->
+  <a href="cobol.html" class="lang-box cobol">
+    <div class="lang-icon"><i class="fa-solid fa-building-columns" style="color:#4c4f60"></i></div>
+    <h2>COBOL</h2>
+    <p>COBOL is the backbone of legacy business systems in banking and government. Learn it for enterprise systems.</p>
+    <span class="cta">Learn COBOL, power business!</span>
+  </a>
+  <!-- New: Visual Basic -->
+  <a href="vb.html" class="lang-box vb">
+    <div class="lang-icon"><i class="fa-solid fa-code" style="color:#68217A"></i></div>
+    <h2>Visual Basic</h2>
+    <p>Visual Basic is easy to learn and great for building Windows applications rapidly and easily.</p>
+    <span class="cta">Build apps with VB!</span>
+  </a>
+  <!-- New: Objective-C -->
+  <a href="objectivec.html" class="lang-box objc">
+    <div class="lang-icon"><i class="fa-brands fa-apple" style="color:#595959"></i></div>
+    <h2>Objective-C</h2>
+    <p>Objective-C was the main language for iOS and macOS before Swift. Still useful for legacy Apple projects.</p>
+    <span class="cta">Maintain legacy with Objective-C!</span>
+  </a>
+  <!-- New: Groovy -->
+  <a href="groovy.html" class="lang-box groovy">
+    <div class="lang-icon"><i class="fa-solid fa-g" style="color:#4298b8"></i></div>
+    <h2>Groovy</h2>
+    <p>Groovy is a dynamic language for the JVM, used in scripting, automation, and Gradle builds.</p>
+    <span class="cta">Script faster with Groovy!</span>
+  </a>
+  <section class="languages-container">
+  <!-- SAS -->
+  <a href="sas.html" class="lang-box sas">
+    <div class="lang-icon"><i class="fa-solid fa-database" style="color:#B300B3"></i></div>
+    <h2>SAS</h2>
+    <p>SAS is widely used for data analytics, statistics, and business intelligence, especially in large enterprises.</p>
+    <span class="cta">Analyze with SAS!</span>
+  </a>
+  <!-- PowerShell -->
+  <a href="powershell.html" class="lang-box powershell">
+    <div class="lang-icon"><i class="fa-solid fa-terminal" style="color:#012456"></i></div>
+    <h2>PowerShell</h2>
+    <p>Automate and manage Windows or cloud systems efficiently with PowerShell scripting.</p>
+    <span class="cta">Automate with PowerShell!</span>
+  </a>
+  <!-- Lua -->
+  <a href="lua.html" class="lang-box lua">
+    <div class="lang-icon"><i class="fa-solid fa-cube" style="color:#000080"></i></div>
+    <h2>Lua</h2>
+    <p>Lua is lightweight, fast, and easy to embed. Popular for scripting in games and embedded devices.</p>
+    <span class="cta">Script fast with Lua!</span>
+  </a>
+  <!-- F# -->
+  <a href="fsharp.html" class="lang-box fsharp">
+    <div class="lang-icon"><i class="fa-solid fa-hashtag" style="color:#378BBA"></i></div>
+    <h2>F#</h2>
+    <p>Functional-first .NET language for robust, maintainable applications and math-driven code.</p>
+    <span class="cta">Try functional F#!</span>
+  </a>
+  <!-- Prolog -->
+  <a href="prolog.html" class="lang-box prolog">
+    <div class="lang-icon"><i class="fa-solid fa-brain" style="color:#8B008B"></i></div>
+    <h2>Prolog</h2>
+    <p>Logic programming for AI and expert systems. Reasoning and rules at the core.</p>
+    <span class="cta">Explore logic with Prolog!</span>
+  </a>
+  <!-- Apex -->
+  <a href="apex.html" class="lang-box apex">
+    <div class="lang-icon"><i class="fa-solid fa-cloud" style="color:#00A1E0"></i></div>
+    <h2>Apex</h2>
+    <p>Salesforce’s strongly typed language for cloud-based business apps and automation.</p>
+    <span class="cta">Customize Salesforce with Apex!</span>
+  </a>
+  <!-- ABAP -->
+  <a href="abap.html" class="lang-box abap">
+    <div class="lang-icon"><i class="fa-solid fa-building-columns" style="color:#E8274B"></i></div>
+    <h2>ABAP</h2>
+    <p>ABAP powers SAP business applications worldwide. Learn it for ERP and enterprise solutions.</p>
+    <span class="cta">Master SAP with ABAP!</span>
+  </a>
+  <!-- Scratch -->
+  <a href="scratch.html" class="lang-box scratch">
+    <div class="lang-icon"><i class="fa-solid fa-puzzle-piece" style="color:#F7B100"></i></div>
+    <h2>Scratch</h2>
+    <p>Block-based language for learning programming concepts. Perfect for kids and beginners.</p>
+    <span class="cta">Start coding visually with Scratch!</span>
+  </a>
+  <!-- Ada -->
+  <a href="ada.html" class="lang-box ada">
+    <div class="lang-icon"><i class="fa-solid fa-rocket" style="color:#00ADEE"></i></div>
+    <h2>Ada</h2>
+    <p>Ada is designed for reliability and critical systems—aviation, defense, and space software.</p>
+    <span class="cta">Build safe systems with Ada!</span>
+  </a>
+  <!-- Pascal -->
+  <a href="pascal.html" class="lang-box pascal">
+    <div class="lang-icon"><i class="fa-solid fa-p" style="color:#E3CB8F"></i></div>
+    <h2>Pascal</h2>
+    <p>Pascal is classic, easy to learn, and foundational for teaching structured programming.</p>
+    <span class="cta">Learn programming with Pascal!</span>
+  </a>
+  <!-- AssemblyScript -->
+  <a href="assemblyscript.html" class="lang-box assemblyscript">
+    <div class="lang-icon"><i class="fa-solid fa-microchip" style="color:#8D99AE"></i></div>
+    <h2>AssemblyScript</h2>
+    <p>Use TypeScript-like syntax to write code that runs at near-native WebAssembly speed.</p>
+    <span class="cta">Compile to WebAssembly!</span>
+  </a>
+  <!-- Crystal -->
+  <a href="crystal.html" class="lang-box crystal">
+    <div class="lang-icon"><i class="fa-solid fa-gem" style="color:#00B2A9"></i></div>
+    <h2>Crystal</h2>
+    <p>Crystal is a fast, statically typed language with Ruby-like syntax. High performance, easy syntax!</p>
+    <span class="cta">Try fast code with Crystal!</span>
+  </a>
+  <!-- Erlang -->
+  <a href="erlang.html" class="lang-box erlang">
+    <div class="lang-icon"><i class="fa-solid fa-network-wired" style="color:#A90533"></i></div>
+    <h2>Erlang</h2>
+    <p>Erlang is built for scalable, fault-tolerant systems like telecom and messaging.</p>
+    <span class="cta">Scale up with Erlang!</span>
+  </a>
+  <!-- Lisp -->
+  <a href="lisp.html" class="lang-box lisp">
+    <div class="lang-icon"><i class="fa-solid fa-brain" style="color:#3FB68B"></i></div>
+    <h2>Lisp</h2>
+    <p>Lisp is one of the oldest and most flexible languages, great for AI, macros, and symbolic processing.</p>
+    <span class="cta">Think differently with Lisp!</span>
+  </a>
+  <!-- Scheme -->
+  <a href="scheme.html" class="lang-box scheme">
+    <div class="lang-icon"><i class="fa-solid fa-circle-nodes" style="color:#6666FF"></i></div>
+    <h2>Scheme</h2>
+    <p>Scheme is a minimalist dialect of Lisp, ideal for teaching and deep computer science concepts.</p>
+    <span class="cta">Explore S-expressions with Scheme!</span>
+  </a>
+  <!-- Tcl -->
+  <a href="tcl.html" class="lang-box tcl">
+    <div class="lang-icon"><i class="fa-solid fa-code" style="color:#DD1100"></i></div>
+    <h2>Tcl</h2>
+    <p>Tcl is a scripting language used for rapid prototyping, GUIs, and testing.</p>
+    <span class="cta">Script quickly with Tcl!</span>
+  </a>
+  <!-- Solidity -->
+  <a href="solidity.html" class="lang-box solidity">
+    <div class="lang-icon"><i class="fa-brands fa-ethereum" style="color:#3C3C3D"></i></div>
+    <h2>Solidity</h2>
+    <p>Solidity is the main language for writing smart contracts on Ethereum and other blockchains.</p>
+    <span class="cta">Write smart contracts with Solidity!</span>
+  </a>
+  <!-- VHDL -->
+  <a href="vhdl.html" class="lang-box vhdl">
+    <div class="lang-icon"><i class="fa-solid fa-microchip" style="color:#A0522D"></i></div>
+    <h2>VHDL</h2>
+    <p>VHDL is used to model electronic systems at multiple levels of abstraction (FPGA/ASIC design).</p>
+    <span class="cta">Design hardware with VHDL!</span>
+  </a>
+  <!-- Verilog -->
+  <a href="verilog.html" class="lang-box verilog">
+    <div class="lang-icon"><i class="fa-solid fa-microchip" style="color:#34495E"></i></div>
+    <h2>Verilog</h2>
+    <p>Verilog is popular for digital circuit design, simulation, and hardware verification.</p>
+    <span class="cta">Simulate digital logic with Verilog!</span>
+  </a>
+  <!-- Q# -->
+  <a href="qsharp.html" class="lang-box qsharp">
+    <div class="lang-icon"><i class="fa-solid fa-atom" style="color:#1B4F72"></i></div>
+    <h2>Q#</h2>
+    <p>Q# is designed for quantum computing, research, and quantum algorithm development.</p>
+    <span class="cta">Try quantum with Q#!</span>
+  </a>
+  <!-- OCaml -->
+  <a href="ocaml.html" class="lang-box ocaml">
+    <div class="lang-icon"><i class="fa-solid fa-otter" style="color:#EF7A08"></i></div>
+    <h2>OCaml</h2>
+    <p>OCaml is a functional language with powerful type inference and pattern matching. Used in finance and academia.</p>
+    <span class="cta">Functional programming with OCaml!</span>
+  </a>
+  <!-- Nim -->
+  <a href="nim.html" class="lang-box nim">
+    <div class="lang-icon"><i class="fa-solid fa-leaf" style="color:#FFE953"></i></div>
+    <h2>Nim</h2>
+    <p>Nim is a statically typed compiled language with a Python-like syntax, known for speed and expressiveness.</p>
+    <span class="cta">Try modern compiled code with Nim!</span>
+  </a>
+  
+</section>
+</section>
+    </div>
+</section>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form action="/submit" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 World Class Developer. All rights reserved.</p>
+        <ul>
+            <li><a href="https://facebook.com"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+            <li><a href="https://twitter.com"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+            <li><a href="https://tiktok.com"><i class="fa-brands fa-tiktok"></i> TikTok</a></li>
+            <li><a href="https://wa.me/255700000000"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+            <li><a href="mailto:info@codesknowledge.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
+        </ul>
+    </footer>
+    <script>
+        function openChatbot() {
+            document.getElementById('chatbot-container').style.display = 'flex';
+            setTimeout(() => document.getElementById('chatbot-input').focus(), 200);
+        }
+        document.getElementById('close-chatbot').onclick = function() {
+            document.getElementById('chatbot-container').style.display = 'none';
+        };
+        function sendChatbotMessage() {
+            const input = document.getElementById('chatbot-input');
+            const message = input.value.trim();
+            if (!message) return;
+            const messagesDiv = document.getElementById('chatbot-messages');
+            messagesDiv.innerHTML += `<div style="margin-bottom:7px;"><b>You:</b> ${message}</div>`;
+            input.value = '';
+            setTimeout(() => {
+                messagesDiv.innerHTML += `<div style="margin-bottom:13px;"><b>AI:</b> <span style="color:#00ffe7;">This is a sample response. Soon, you’ll get real coding help, explanations, and recommendations here.</span></div>`;
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, 700);
+        }
+        // AI Search
+        document.getElementById('ai-search-btn').onclick = aiSmartSearch;
+        document.getElementById('ai-search').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') aiSmartSearch();
+        });
+        function aiSmartSearch() {
+            let query = document.getElementById('ai-search').value.trim();
+            let resultsDiv = document.getElementById('ai-search-results');
+            if (!query) return;
+            resultsDiv.innerHTML = `<div><b>Results for "${query}":</b><ul><li>Feature coming soon: Smart search will show relevant courses, Q&A, and materials instantly.</li></ul></div>`;
+            resultsDiv.style.display = 'block';
+            setTimeout(() => { resultsDiv.style.display = 'none'; }, 4000);
+        }
+        // Voice Search
+        document.getElementById('start-voice').onclick = function() {
+            if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+                document.getElementById('voice-input').value = "Sorry, voice recognition is not supported in this browser.";
+                return;
+            }
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.start();
+            recognition.onresult = function(event) {
+                document.getElementById('voice-input').value = event.results[0][0].transcript;
+            };
+            recognition.onerror = function(event) {
+                document.getElementById('voice-input').value = "Voice recognition failed.";
+            };
+        };
+        // Navigation responsive toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navList = document.querySelector('.nav-list');
+        if (navToggle && navList) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !expanded);
+                navList.classList.toggle('show');
+            });
+        }
+        // Theme switcher
+        const themeSelect = document.getElementById('theme-select');
+        if (themeSelect) {
+            themeSelect.addEventListener('change', function () {
+                switch (this.value) {
+                    case "light": document.documentElement.setAttribute('data-theme', 'light'); break;
+                    case "dark": document.documentElement.setAttribute('data-theme', 'dark'); break;
+                    default: document.documentElement.removeAttribute('data-theme');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

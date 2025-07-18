@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Java Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Java with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(30, 24, 0, 0.93); /* Warm java-brown overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #e76f00;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #f9b881;
+    }
+    .language-heading .fa-mug-hot {
+      font-size: 3.2rem;
+      color: #e76f00;
+      text-shadow: 0 4px 40px #e76f0099, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(47, 34, 0, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #4f2a00cc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #fff4e0;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #f9b881;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(63, 48, 25, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #fff4e0;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #f9b881;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #a55e1a;
+      border-radius: 0.5em;
+      background: rgba(90, 60, 20, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(231,111,0,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #e76f00;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #e76f00;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #fff4e0;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(47, 34, 0, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #e76f001a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #fff4e0;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #f9b881;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #5a3910;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #e76f003c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #f9b881;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-mug-hot"></i>
+      Java Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Java</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Java is one of the most popular languages. Be ready for object-oriented concepts and lots of curly braces!</li>
+            <li><b>Tools:</b> Install Java JDK and use an IDE (Eclipse, IntelliJ, NetBeans, VS Code, etc.)</li>
+            <li><b>Practice:</b> Write and run every sample, experiment with changing code and compiling it.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> for support and sharing ideas.</li>
+            <li><b>Take Notes:</b> Document key concepts, common errors, and syntax patterns.</li>
+            <li><b>Explore:</b> Try building small console apps, GUIs, or Android apps as you learn.</li>
+            <li><b>Debug:</b> Use print statements and your IDE’s debugger to solve problems.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Java Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/grEKMHGYyns" allowfullscreen title="Java Full Course - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">Java Full Course - FreeCodeCamp</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/eIrMbAQSU34" allowfullscreen title="Java Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Java Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/A74TOX803D0" allowfullscreen title="Java in One Video"></iframe>
+            </div>
+            <div class="video-title">Java in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Java Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Java</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Java is a statically-typed, object-oriented language known for portability and scalability.</li>
+              <li>Write once, run anywhere: Java programs run on the Java Virtual Machine (JVM).</li>
+              <li>Popular for enterprise, web, and Android apps.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Structure of a Java Program</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Every Java file has at least one class. The main method is the entry point.</li>
+              <li>
+                <pre>
+public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, Java!");
+  }
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Common types: <code>int</code>, <code>double</code>, <code>String</code>, <code>boolean</code>, <code>char</code></li>
+              <li>
+                <pre>
+int age = 21;
+double temp = 36.6;
+String name = "Sam";
+boolean isActive = true;
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Output: <code>System.out.println("Hello!");</code></li>
+              <li>Input (console): <code>Scanner sc = new Scanner(System.in); String input = sc.nextLine();</code></li>
+              <li>Don't forget to <code>import java.util.Scanner;</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, else, switch)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if (age >= 18) {
+  System.out.println("Adult");
+} else {
+  System.out.println("Minor");
+}
+                </pre>
+              </li>
+              <li>
+                <pre>
+switch(day) {
+  case "Monday":
+    System.out.println("Start of week");
+    break;
+  default:
+    System.out.println("Other day");
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, while, do-while, for-each)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+for (int i = 0; i < 5; i++) {
+  System.out.println(i);
+}
+while (condition) { ... }
+do { ... } while (condition);
+for (String name : names) { ... }
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Methods (Functions)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+public static int add(int a, int b) {
+  return a + b;
+}
+                </pre>
+              </li>
+              <li>Methods can be static (called on the class) or instance (called on objects).</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Arrays and ArrayLists</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+int[] arr = {1, 2, 3};
+System.out.println(arr[0]);
+                </pre>
+              </li>
+              <li>
+                <pre>
+import java.util.ArrayList;
+ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("Alice");
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Classes and Objects</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+public class Dog {
+  String name;
+  void bark() {
+    System.out.println("Woof!");
+  }
+}
+Dog d = new Dog();
+d.name = "Max";
+d.bark();
+                </pre>
+              </li>
+              <li>Understand fields, methods, constructors, and instantiation.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Exception Handling</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+try {
+  int x = Integer.parseInt("abc");
+} catch (NumberFormatException e) {
+  System.out.println("Error: " + e.getMessage());
+} finally {
+  System.out.println("Done!");
+}
+                </pre>
+              </li>
+              <li>Handle exceptions for robust programs.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Advanced Features</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Inheritance, interfaces, abstract classes, generics, lambda expressions, streams.</li>
+              <li>Explore JavaFX or Swing for GUIs, and Spring Boot for web apps.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use meaningful class, method, and variable names (camelCase, PascalCase).</li>
+              <li>Keep code DRY, modular, and well-commented.</li>
+              <li>Explore docs: <a href="https://docs.oracle.com/javase/tutorial/" target="_blank">docs.oracle.com/javase/tutorial/</a></li>
+              <li>Practice by solving problems and building apps!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

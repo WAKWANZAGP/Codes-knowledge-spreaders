@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Haskell Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Haskell with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(47, 16, 56, 0.96); /* Haskell purple overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #5e5086;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #c7aaff;
+    }
+    .language-heading .fa-code {
+      font-size: 3.2rem;
+      color: #c7aaff;
+      text-shadow: 0 4px 40px #5e508688, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(70, 40, 95, 0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #321e4dcc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #f7f3ff;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #c7aaff;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(54, 30, 72, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #ece2fb;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #c7aaff;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #8466a5;
+      border-radius: 0.5em;
+      background: rgba(80, 40, 120, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(94,80,134,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #c7aaff;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #5e5086;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #ece2fb;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(48, 21, 70, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #5e50861a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #ece2fb;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #c7aaff;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #432d5c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #5e50863c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #c7aaff;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-code"></i>
+      Haskell Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Haskell</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Haskell is pure, lazy, and functional. Be ready to think differently about computation!</li>
+            <li><b>Tools:</b> Install the Haskell Platform or GHCup, and use an editor like VS Code or Emacs with Haskell plugins.</li>
+            <li><b>Practice:</b> Try code in <code>ghci</code> (the interactive REPL) as you learn.</li>
+            <li><b>Ask Questions:</b> Reach out in our <a href="community.html" target="_blank">community</a> for help and discussion.</li>
+            <li><b>Take Notes:</b> Write down new patterns, type signatures, and error messages.</li>
+            <li><b>Explore:</b> Haskell is great for math, parsing, and concurrency—try small projects!</li>
+            <li><b>Debug:</b> Read error messages fully—Haskell is strict about types, but the errors are helpful.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Haskell Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/02_H3LjqMr8" allowfullscreen title="Haskell Programming - Full Course"></iframe>
+            </div>
+            <div class="video-title">Haskell Programming - Full Course</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/REPL6l4Euq0" allowfullscreen title="Haskell Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Haskell Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/8MZ6gH0Zc6U" allowfullscreen title="Learn Haskell in One Video"></iframe>
+            </div>
+            <div class="video-title">Learn Haskell in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Haskell Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Haskell</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Haskell is a statically-typed, purely functional programming language with lazy evaluation.</li>
+              <li>Great for math, language processing, and concurrent systems.</li>
+              <li>Files have <code>.hs</code> extension.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Basic Syntax & GHCi</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Run <code>ghci</code> for interactive exploration.</li>
+              <li>Simple expressions:
+                <pre>
+Prelude> 2 + 3 * 4
+14
+Prelude> let x = 5
+Prelude> x * 2
+10
+                </pre>
+              </li>
+              <li>Comments: <code>-- single line</code>, <code>{- multi line -}</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Data Types & Type Signatures</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Common types: <code>Int</code>, <code>Integer</code>, <code>Float</code>, <code>Double</code>, <code>Char</code>, <code>Bool</code>, <code>String</code></li>
+              <li>Type signatures: <code>add :: Int -> Int -> Int</code></li>
+              <li>
+                <pre>
+add :: Int -> Int -> Int
+add a b = a + b
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Functions and Pattern Matching</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Functions are first-class. Pattern matching makes code concise.</li>
+              <li>
+                <pre>
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+                </pre>
+              </li>
+              <li>Guards:
+                <pre>
+abs x | x >= 0    = x
+      | otherwise = -x
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Lists and Tuples</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+nums = [1,2,3]
+names = ["Alice", "Bob"]
+pair = (2, "hi")
+head nums -- 1
+tail nums -- [2,3]
+                </pre>
+              </li>
+              <li>List comprehensions: <code>[x*2 | x <- [1..5]]</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Higher-Order Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Functions can take other functions as arguments or return them.</li>
+              <li>
+                <pre>
+map (\x -> x * 2) [1,2,3] -- [2,4,6]
+filter even [1..10] -- [2,4,6,8,10]
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Recursion</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Most loops in Haskell are written using recursion.</li>
+              <li>
+                <pre>
+sumList [] = 0
+sumList (x:xs) = x + sumList xs
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Algebraic Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+data Color = Red | Green | Blue
+data Person = Person String Int
+                </pre>
+              </li>
+              <li>Pattern match on custom types to extract data.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Typeclasses & Instances</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Typeclasses define common interfaces, like <code>Eq</code>, <code>Show</code>, <code>Ord</code>.</li>
+              <li>
+                <pre>
+instance Eq Color where
+  Red == Red = True
+  _ == _ = False
+                </pre>
+              </li>
+              <li>Use <code>deriving</code> to auto-implement common typeclasses.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. IO and the Main Function</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+main = do
+  putStrLn "What's your name?"
+  name <- getLine
+  putStrLn ("Hello, " ++ name)
+                </pre>
+              </li>
+              <li>IO in Haskell is handled with <code>do</code> blocks and monads.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Modules & Imports</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Split code into modules for organization and reuse.</li>
+              <li>
+                <pre>
+module MyModule (foo) where
+foo = "bar"
+
+import Data.List (sort)
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Write clear function/type signatures and use descriptive names.</li>
+              <li>Read: <a href="https://www.haskell.org/documentation/" target="_blank">haskell.org/documentation</a></li>
+              <li>Practice by solving problems and building small projects.</li>
+              <li>Explore Haskell for parsing, math, and concurrent programming.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

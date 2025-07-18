@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses | Codes Knowledge Spreaders</title>
+  <meta name="description" content="Explore and enroll in free programming courses. Choose by category, language, or level. 100% Free.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo-title">
+        <a href="index.html" class="logo-btn" aria-label="Home">
+          <div class="school-logo-anim" tabindex="0">
+            <img src="logo2.png" alt="Codes Knowledge Spreaders Logo" class="logo-img"/>
+            <span class="logo-glow"></span>
+          </div>
+        </a>
+        <span class="school-title">CODES KNOWLEDGE SPREADERS</span>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <i</button> class="fa fa-bars"></i>
+        </button>
+        <ul class="nav-list">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="courses.html" class="active">COURSES</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="community.html">COMMUNITY</a></li>
+        </ul>
+      </nav>
+      <div class="header-features">
+        <div class="header-theme">
+          <label for="theme-select">Theme:</label>
+          <select id="theme-select" aria-label="Theme switcher">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="header-search">
+          <input type="text" id="ai-search" placeholder="Search platform, courses, or answers..." aria-label="AI Search" autocomplete="off"/>
+          <button id="ai-search-btn" aria-label="Run AI Search"><i class="fa fa-search"></i></button>
+          <div id="ai-search-results"></div>
+        </div>
+        <div class="header-voice">
+          <button class="voice-btn" title="Voice Search" aria-label="Voice Search">
+            <i class="fas fa-microphone"></i>
+          </button>
+        </div>
+        <div class="header-chat">
+          <button id="open-chatbot" class="open-chatbot" aria-label="Open AI Chat"><i class="fa-solid fa-message"></i> Ask AI</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Chatbot Widget -->
+  <aside id="chatbot-container" class="chatbot-container" aria-label="AI Chatbot" style="display:none;">
+    <div class="chatbot-header">
+      <span>Smart AI Assistant</span>
+      <button id="close-chatbot" aria-label="Close Chatbot">&times;</button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages"></div>
+    <form class="chatbot-form" onsubmit="event.preventDefault(); sendChatbotMessage();">
+      <input id="chatbot-input" type="text" placeholder="Type your question..." autocomplete="off" aria-label="Chatbot Input"/>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </aside>
+  <main>
+    <section class="courses-hero">
+      <div>
+        <h1>Start Learning for Free!</h1>
+        <p>
+          Welcome to the best place for learning programming and technology, absolutely <b>free</b>. 
+          Choose your favorite category, language, or level and begin your journey today. 
+        </p>
+        <div class="free-badge"><i class="fa-solid fa-crown"></i> 100% Forever Free <i class="fa-solid fa-bolt"></i></div>
+      </div>
+    </section>
+    <section class="courses-filters">
+      <h2>Find Your Perfect Course</h2>
+      <form id="course-filter-form"></form>
+        <div class="filter-group">
+          <label>Category:</label>
+          <div class="filter-options">
+            <label><input type="radio" name="category" value="all" checked> All</label>
+            <label><input type="radio" name="category" value="web"> Web Development</label>
+            <label><input type="radio" name="category" value="mobile"> Mobile Development</label>
+            <label><input type="radio" name="category" value="backend"> Backend</label>
+            <label><input type="radio" name="category" value="datascience"> Data Science</label>
+            <label><input type="radio" name="category" value="devops"> DevOps/Scripting</label>
+            <label><input type="radio" name="category" value="other"> Other</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label>Language:</label>
+          <div class="filter-options" id="language-toggles">
+            <!-- Dynamic language toggles here -->
+          </div>
+        </div>
+        <div class="filter-group">
+          <label>Level:</label>
+          <div class="filter-options">
+            <label><input type="radio" name="level" value="all" checked> All</label>
+            <label><input type="radio" name="level" value="beginner"> Beginner</label>
+            <label><input type="radio" name="level" value="intermediate"> Intermediate</label>
+            <label><input type="radio" name="level" value="advanced"> Advanced</label>
+          </div>
+        </div>
+      </form>
+    </section>
+    <section class="courses-list-container">
+      <div id="courses-list" class="courses-list">
+        <!-- Course cards will be dynamically loaded here -->
+      </div>
+      <div id="no-courses-msg" class="no-courses-msg" style="display:none;">
+        <i class="fa-solid fa-face-sad-tear"></i> No courses found for your selection. Try changing filters.
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Codes Knowledge Spreaders. All rights reserved.</p>
+    <ul>
+      <li><a href="https://facebook.com"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+      <li><a href="https://twitter.com"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+      <li><a href="https://tiktok.com"><i class="fa-brands fa-tiktok"></i> TikTok</a></li>
+      <li><a href="https://wa.me/255700000000"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="mailto:info@codesknowledge.com"><i class="fa-solid fa-envelope"></i> Email</a></li>
+    </ul>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MATLAB Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn MATLAB with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(8,12,18,0.92);
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #00ffe7;
+    }
+    .language-heading .fa-square-root-variable {
+      font-size: 3.2rem;
+      color: #00ffe7;
+      text-shadow: 0 4px 40px #005c7e99, 0 1px 0 #ffd700;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(20, 30, 40, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #000c;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e7e7e7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #ffd700;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(25, 33, 45, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f3f3f3;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #00ffe7;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #222c33;
+      border-radius: 0.5em;
+      background: rgba(30, 40, 55, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(0,255,231,0.06);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ffd700;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #00ffe7;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e7e7e7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(18, 26, 38, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #00ffe71a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e7e7e7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #ffd700;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #000c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #00ffe73c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #00ffe7;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-square-root-variable"></i>
+      MATLAB Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning MATLAB</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Be curious and persistent. MATLAB is powerful for numerical and scientific computing.</li>
+            <li><b>Tools:</b> Install MATLAB (from <a href="https://www.mathworks.com/" target="_blank">mathworks.com</a>) or use MATLAB Online before you start.</li>
+            <li><b>Practice:</b> Type and run all code examples yourself. Modify examples to see what happens.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> to discuss challenges and share code.</li>
+            <li><b>Take Notes:</b> Record key functions, syntax, and error messages for later reference.</li>
+            <li><b>Stay Curious:</b> Explore extra MATLAB toolboxes and try small projects as you learn.</li>
+            <li><b>Don’t Fear Errors:</b> Every error is a learning opportunity. Read the messages and search for solutions.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> MATLAB Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/Eb2LX2xQWj0" allowfullscreen title="MATLAB Full Course for Beginners"></iframe>
+            </div>
+            <div class="video-title">MATLAB Full Course for Beginners</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/1g5Q2T5T9u8" allowfullscreen title="MATLAB Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">MATLAB Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/7DkKJk6b9Wg" allowfullscreen title="MATLAB Programming - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">MATLAB Programming - FreeCodeCamp</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> MATLAB Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to MATLAB</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>What is MATLAB? Matrix Laboratory; a high-level language for numerical computing.</li>
+              <li>Main uses: Data analysis, visualization, engineering, simulations, algorithms.</li>
+              <li>First steps: Opening MATLAB, using the Command Window.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Creating variables: <code>x = 5;</code>, <code>name = 'Alice';</code></li>
+              <li>Basic data types: numeric, char, string, logical, array, cell, struct</li>
+              <li>Type conversion: <code>double('5')</code>, <code>num2str(123)</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Printing: <code>disp('Hello, world!')</code></li>
+              <li>User input: <code>name = input('Enter your name: ','s')</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Matrices and Arrays</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>MATLAB is built for matrix operations: <code>A = [1 2; 3 4];</code></li>
+              <li>Indexing: <code>A(1,2)</code></li>
+              <li>Common functions: <code>size()</code>, <code>length()</code>, <code>sum()</code>, <code>mean()</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, else, switch)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Conditional statements: <code>if</code>, <code>elseif</code>, <code>else</code>, <code>switch</code></li>
+              <li>Relational operators: <code>==</code>, <code>~=</code>, <code>&lt;</code>, <code>&gt;</code></li>
+              <li>Example:<br>
+<code>
+if age &gt;= 18<br>
+&nbsp;&nbsp;disp('Adult')<br>
+else<br>
+&nbsp;&nbsp;disp('Minor')<br>
+end
+</code>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, while)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li><code>for i = 1:5</code> — Repeat actions a fixed number of times</li>
+              <li><code>while condition</code> — Repeat while a condition is true</li>
+              <li>Breaking and continuing loops: <code>break</code>, <code>continue</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Defining: <code>function y = add(a,b), y = a+b; end</code></li>
+              <li>Calling: <code>result = add(3,4);</code></li>
+              <li>Multiple outputs, input arguments, and local variables</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Scripts and M-files</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Scripts: Saved with <code>.m</code> extension, run all commands in file</li>
+              <li>Functions: Also <code>.m</code> files, start with <code>function</code> keyword</li>
+              <li>Best practice: Use scripts for simple tasks, functions for reusable code</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Plotting and Visualization</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Basic plotting: <code>plot(x, y)</code>, <code>xlabel()</code>, <code>ylabel()</code>, <code>title()</code></li>
+              <li>Other plots: <code>bar()</code>, <code>histogram()</code>, <code>scatter()</code></li>
+              <li>Customizing plots (colors, legends, grid)</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. File I/O</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Reading/writing data: <code>load</code>, <code>save</code>, <code>csvread</code>, <code>csvwrite</code>, <code>fopen</code>, <code>fscanf</code>, <code>fprintf</code></li>
+              <li>Importing/exporting variables and data</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Add more topics as needed -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

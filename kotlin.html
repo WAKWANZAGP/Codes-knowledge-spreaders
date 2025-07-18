@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kotlin Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Kotlin with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(28, 20, 50, 0.95); /* Kotlin purple overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #7f52ff;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #fbb03b;
+    }
+    .language-heading .fa-korvue {
+      font-size: 3.2rem;
+      color: #fbb03b;
+      text-shadow: 0 4px 40px #7f52ff99, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+      transform: rotate(-10deg);
+    }
+    @keyframes floatIcon {
+      to { transform: rotate(-10deg) translateY(-16px) scale(1.08);}
+      from { transform: rotate(-10deg) translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(45, 30, 85, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #5833a8cc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #f6f2ff;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #fbb03b;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(52, 40, 85, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f6f2ff;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #fbb03b;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #7f52ff;
+      border-radius: 0.5em;
+      background: rgba(70, 46, 120, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(127,82,255,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #fbb03b;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #7f52ff;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #f6f2ff;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(38, 20, 62, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #7f52ff1a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #f6f2ff;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #fbb03b;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #442c60;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #7f52ff3c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #fbb03b;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-brands fa-korvue"></i>
+      Kotlin Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Kotlin</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Kotlin is modern, concise, and expressive. Great for Android and server-side apps!</li>
+            <li><b>Tools:</b> Install the Kotlin compiler and use IntelliJ IDEA or Android Studio for the best experience.</li>
+            <li><b>Practice:</b> Experiment in <a href="https://play.kotlinlang.org/" target="_blank">Kotlin Playground</a> or in your IDE as you learn.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> for advice and help.</li>
+            <li><b>Take Notes:</b> Write down new syntax, idioms, and error messages.</li>
+            <li><b>Explore:</b> Try building small scripts or Android apps with Kotlin.</li>
+            <li><b>Debug:</b> Use print/log statements and IDE debugging tools for troubleshooting.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Kotlin Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/F9UC9DY-vIU" allowfullscreen title="Kotlin Full Course - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">Kotlin Full Course - FreeCodeCamp</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/EExSSotojVI" allowfullscreen title="Kotlin Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Kotlin Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/_1uG1u6nFz0" allowfullscreen title="Kotlin in One Video"></iframe>
+            </div>
+            <div class="video-title">Kotlin in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Kotlin Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Kotlin</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Kotlin is a statically-typed, JVM-based language by JetBrains, interoperable with Java.</li>
+              <li>Great for Android, backend, and multiplatform development.</li>
+              <li>Concise, null-safe, and supports both OOP and functional programming.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Program Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Kotlin programs start with <code>fun main()</code>:</li>
+              <li>
+                <pre>
+fun main() {
+  println("Hello, Kotlin!")
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Declare variables with <code>val</code> (immutable) or <code>var</code> (mutable):</li>
+              <li>
+                <pre>
+val name: String = "Alice"
+var age = 21
+val pi = 3.14
+                </pre>
+              </li>
+              <li>Types: <code>Int</code>, <code>Double</code>, <code>Boolean</code>, <code>String</code>, etc.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Output: <code>println("Hello!")</code></li>
+              <li>Input (console): <code>readLine()</code> returns a <code>String?</code></li>
+              <li>
+                <pre>
+print("Enter your name: ")
+val name = readLine()
+println("Hi, $name!")
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, when)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if (age >= 18) {
+  println("Adult")
+} else {
+  println("Minor")
+}
+
+when (day) {
+  "Monday" -> println("Start of week")
+  else -> println("Other day")
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, while, do-while)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+for (i in 1..5) {
+  println(i)
+}
+while (condition) { ... }
+do { ... } while (condition)
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+fun add(a: Int, b: Int): Int {
+  return a + b
+}
+fun sqr(n: Int) = n * n
+                </pre>
+              </li>
+              <li>Supports default and named arguments, and higher-order functions.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Collections (Lists, Sets, Maps)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+val nums = listOf(1, 2, 3)
+val fruits = setOf("apple", "banana")
+val ages = mapOf("Alice" to 20, "Bob" to 25)
+                </pre>
+              </li>
+              <li>Mutable versions: <code>mutableListOf</code>, <code>mutableSetOf</code>, <code>mutableMapOf</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Classes and Objects</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+class Person(val name: String, var age: Int) {
+  fun greet() = println("Hi, I'm $name")
+}
+val p = Person("Alice", 20)
+p.greet()
+                </pre>
+              </li>
+              <li>Use <code>data class</code> for value objects.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Null Safety</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Variables are non-null by default. Use <code>?</code> for nullable types.</li>
+              <li>
+                <pre>
+var name: String? = null
+if (name != null) {
+  println(name.length)
+}
+                </pre>
+              </li>
+              <li>Use <code>!!</code> to force non-null (be careful).</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Lambdas & Higher-Order Functions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+val nums = listOf(1,2,3)
+val doubled = nums.map { it * 2 }
+val even = nums.filter { it % 2 == 0 }
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use descriptive names and idiomatic Kotlin (see <a href="https://kotlinlang.org/docs/coding-conventions.html" target="_blank">Kotlin conventions</a>).</li>
+              <li>Explore: <a href="https://kotlinlang.org/docs/home.html" target="_blank">kotlinlang.org/docs/home.html</a></li>
+              <li>Practice by building small apps or scripts!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

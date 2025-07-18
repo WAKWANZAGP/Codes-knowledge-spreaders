@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assembly Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Assembly language with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(8,12,18,0.92);
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #00ffe7;
+    }
+    .language-heading .fa-microchip {
+      font-size: 3.2rem;
+      color: #00ffe7;
+      text-shadow: 0 4px 40px #005c7e99, 0 1px 0 #ffd700;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(20, 30, 40, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #000c;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e7e7e7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #ffd700;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(25, 33, 45, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f3f3f3;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #00ffe7;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #222c33;
+      border-radius: 0.5em;
+      background: rgba(30, 40, 55, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(0,255,231,0.06);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ffd700;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #00ffe7;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e7e7e7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(18, 26, 38, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #00ffe71a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e7e7e7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #ffd700;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #000c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #00ffe73c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #00ffe7;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-microchip"></i>
+      Assembly Language Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Assembly</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Assembly is low-level and close to machine code. Be patient and persistent.</li>
+            <li><b>Tools:</b> Pick an assembler (MASM, NASM, GNU as), and use an emulator or real hardware.</li>
+            <li><b>Practice:</b> Type every example, assemble/run, and debug step by step.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> to discuss challenges and share code.</li>
+            <li><b>Take Notes:</b> Write down instructions, addressing modes, and error messages.</li>
+            <li><b>Stay Curious:</b> Try writing small programs (print, sum, loop) and analyze how CPUs work.</li>
+            <li><b>Don’t Fear Errors:</b> Errors are common. Read messages and check documentation.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Assembly Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/75gBFiFtAb8" allowfullscreen title="Assembly Full Course for Beginners"></iframe>
+            </div>
+            <div class="video-title">Assembly Full Course for Beginners</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/4gwYkEK0gOk" allowfullscreen title="Assembly Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Assembly Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/3GW3rYDsbeE" allowfullscreen title="Assembly Programming - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">Assembly Programming - FreeCodeCamp</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Assembly Programming Comprehensive Course Outline</h2>
+        <!-- Module 1: Introduction & Setup -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Getting Started with Assembly</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>What is Assembly? History and importance in computing.</li>
+          <li>Types of Assemblers: NASM, MASM, GAS, FASM, TASM.</li>
+          <li>Choosing your platform: x86, x64, ARM, MIPS, RISC-V.</li>
+          <li>Setting up the development environment (Windows, Linux, Mac).</li>
+          <li>Writing and running your first Assembly program.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 2: Assembly Language Basics -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Syntax, Structure & Data Representation</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Basic syntax: instructions, labels, comments.</li>
+          <li>Sections: <code>.data</code>, <code>.bss</code>, <code>.text</code>.</li>
+          <li>Instruction format: <code>opcode operands ; comment</code>.</li>
+          <li>Data types: bytes, words, double words, quad words.</li>
+          <li>Defining data: <code>db</code>, <code>dw</code>, <code>dd</code>, <code>dq</code>.</li>
+          <li>Endianness: little vs big endian.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 3: Memory & Addressing -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Memory Management & Addressing Modes</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Memory layout: stack, heap, data, code segments.</li>
+          <li>Addressing modes: immediate, direct, indirect, register, indexed, based, scaled.</li>
+          <li>Pointers and referencing memory.</li>
+          <li>Practical examples of memory access.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 4: Registers & CPU Architecture -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Registers and CPU Architecture</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>General purpose registers: <code>AX</code>, <code>BX</code>, <code>CX</code>, <code>DX</code>, etc.</li>
+          <li>Segment registers: <code>CS</code>, <code>DS</code>, <code>SS</code>, <code>ES</code>, <code>FS</code>, <code>GS</code>.</li>
+          <li>Instruction pointer, stack pointer, base pointer.</li>
+          <li>Flags register and its role.</li>
+          <li>Register conventions (calling conventions, callee/caller saved).</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 5: Arithmetic, Logic & Bitwise Operations -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Arithmetic, Logic, and Bitwise Operations</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Basic arithmetic: <code>add</code>, <code>sub</code>, <code>mul</code>, <code>div</code>.</li>
+          <li>Increment, decrement, negation.</li>
+          <li>Bitwise operations: <code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>.</li>
+          <li>Shifts and rotates: <code>shl</code>, <code>shr</code>, <code>rol</code>, <code>ror</code>.</li>
+          <li>Practical bit manipulation examples.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 6: Control Flow & Branching -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Control Flow: Jumps, Loops, and Branching</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Unconditional jumps: <code>jmp</code>.</li>
+          <li>Conditional jumps: <code>je</code>, <code>jne</code>, <code>jg</code>, <code>jl</code>, etc.</li>
+          <li>Looping constructs: <code>loop</code>, <code>jcxz</code>, manual loops.</li>
+          <li>Comparisons: <code>cmp</code>, <code>test</code>.</li>
+          <li>Implementing <code>if</code>, <code>else</code>, <code>while</code>, <code>for</code> in Assembly.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 7: Procedures, Functions & Stack -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Procedures, Functions, and Stack Management</summary>
+          <div class="toggle-content"></div>
+        <ul>
+          <li>Defining and calling procedures/functions.</li>
+          <li>Parameter passing: stack, registers, memory.</li>
+          <li>Stack operations: <code>push</code>, <code>pop</code>, stack frames.</li>
+          <li>Local variables and recursion.</li>
+          <li>Calling conventions (cdecl, stdcall, fastcall, etc.).</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 8: Input/Output & System Calls -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Input/Output and System Calls</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Printing to console (DOS, Linux, Windows examples).</li>
+          <li>Reading user input.</li>
+          <li>File I/O basics: open, read, write, close.</li>
+          <li>Using interrupts: <code>int 21h</code>, <code>int 80h</code>, <code>syscall</code>.</li>
+          <li>Making direct system calls (Linux x86_64, Windows API).</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 9: Advanced Topics: Macros, Includes, and Modularization -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Macros, Includes, and Modular Programming</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Defining and using macros for reusable code.</li>
+          <li>Including external files and libraries.</li>
+          <li>Conditional assembly and preprocessor directives.</li>
+          <li>Organizing large projects: modularization and linking.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 10: Debugging, Profiling & Optimization -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Debugging, Profiling, and Optimization</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Using debuggers: GDB, OllyDbg, WinDbg, x64dbg.</li>
+          <li>Reading and understanding machine code and disassembly.</li>
+          <li>Profiling performance and identifying bottlenecks.</li>
+          <li>Optimization techniques for speed and size.</li>
+          <li>Common pitfalls and best practices.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 11: Interfacing with High-Level Languages -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Interfacing Assembly with C/C++ and Other Languages</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Calling Assembly from C/C++ and vice versa.</li>
+          <li>Inline Assembly in C/C++.</li>
+          <li>ABI, calling conventions, and data alignment.</li>
+          <li>Mixing Assembly with other languages (Python, Rust, etc.).</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 12: Reverse Engineering & Security -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Reverse Engineering and Security Applications</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Disassembling binaries and analyzing code.</li>
+          <li>Understanding malware and exploits at Assembly level.</li>
+          <li>Writing shellcode and understanding buffer overflows.</li>
+          <li>Basic anti-debugging and obfuscation techniques.</li>
+        </ul>
+          </div>
+        </details>
+        <!-- Module 13: Real-World Projects & Further Resources -->
+        <details class="toggle">
+          <summary class="toggle-summary">13. Real-World Projects and Further Learning</summary>
+          <div class="toggle-content">
+        <ul>
+          <li>Sample projects: calculators, games, OS components, device drivers.</li>
+          <li>Open source Assembly projects to study.</li>
+          <li>Recommended books, websites, and communities.</li>
+          <li>How to keep improving and learning advanced topics.</li>
+        </ul>
+          </div>
+        </details>
+      </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

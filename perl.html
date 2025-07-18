@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Perl Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Perl with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(22, 22, 36, 0.95); /* Perl classic dark blue overlay */
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #8b63c7;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #c3b6fa;
+    }
+    .language-heading .fa-gem {
+      font-size: 3.2rem;
+      color: #c3b6fa;
+      text-shadow: 0 4px 40px #8b63c7aa, 0 1px 0 #fff;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(44, 36, 66, 0.97);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #2b1c4dcc;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #ede8f7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #c3b6fa;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(60, 50, 80, 0.98);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #ede8f7;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #c3b6fa;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #8b63c7;
+      border-radius: 0.5em;
+      background: rgba(66, 60, 92, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(139,99,199,0.08);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #c3b6fa;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #8b63c7;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #ede8f7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(26, 22, 39, 0.99);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #8b63c71a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #ede8f7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #c3b6fa;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #231c36;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #8b63c73c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #c3b6fa;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-gem"></i>
+      Perl Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Perl</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Perl is flexible and expressive—there are many ways to solve a problem!</li>
+            <li><b>Tools:</b> Install Perl (usually pre-installed on Unix/Linux), use an editor like VS Code, Vim, or Atom.</li>
+            <li><b>Practice:</b> Run code snippets with <code>perl script.pl</code> or try them in an online Perl REPL.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> for Perl help and discussion.</li>
+            <li><b>Take Notes:</b> Track new idioms, regular expression tricks, and error messages.</li>
+            <li><b>Explore:</b> Try small scripts for text processing, system automation, or web tasks.</li>
+            <li><b>Debug:</b> Use <code>warnings</code> and <code>strict</code> pragmas, and the <code>perl -c</code> syntax checker.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Perl Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/WEghIXs8F6c" allowfullscreen title="Perl Programming - Full Course"></iframe>
+            </div>
+            <div class="video-title">Perl Programming - Full Course</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/TgG3ZzrGqRs" allowfullscreen title="Perl Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Perl Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/JutkqzYwdjY" allowfullscreen title="Perl in One Video"></iframe>
+            </div>
+            <div class="video-title">Perl in One Video</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Perl Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Perl</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Perl is a high-level, interpreted language known for text processing and system scripting.</li>
+              <li>Famous motto: "There's more than one way to do it."</li>
+              <li>Files usually end with <code>.pl</code>.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Basic Syntax & Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+#!/usr/bin/perl
+use strict;
+use warnings;
+print "Hello, Perl!\n";
+                </pre>
+              </li>
+              <li>Use <code>use strict;</code> and <code>use warnings;</code> for good habits.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Scalars: <code>$a = 5;</code> <br> Arrays: <code>@arr = (1, 2, 3);</code> <br> Hashes: <code>%h = (a=>1, b=>2);</code></li>
+              <li>Context matters: arrays/lists in list context, scalars in scalar context.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+print "Enter your name: ";
+my $name = <STDIN>;
+chomp $name;
+print "Hello, $name!\n";
+                </pre>
+              </li>
+              <li>Use <code>chomp</code> to remove trailing newline from input.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Control Flow (if, else, unless, given)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+if ($a > 10) {
+  print "Big\n";
+} elsif ($a == 10) {
+  print "Ten\n";
+} else {
+  print "Small\n";
+}
+unless ($a) { print "Zero!\n"; }
+                </pre>
+              </li>
+              <li>Switch-like <code>given</code> is available in Perl 5.10+.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Loops (for, foreach, while, until)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+for (my $i=0; $i<5; $i++) {
+  print "$i\n";
+}
+foreach my $item (@arr) {
+  print "$item\n";
+}
+while (<STDIN>) {
+  last if $_ eq "exit\n";
+  print $_;
+}
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Subroutines</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+sub add {
+  my ($a, $b) = @_;
+  return $a + $b;
+}
+print add(2,3);
+                </pre>
+              </li>
+              <li>Arguments are passed in <code>@_</code>.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Regular Expressions</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+my $str = "hello";
+if ($str =~ /ell/) {
+  print "Found!\n";
+}
+$str =~ s/ell/ALL/;
+                </pre>
+              </li>
+              <li>Powerful and central to Perl scripting.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. File I/O</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+open(my $fh, "&lt;", "file.txt") or die "Can't open file!";
+while (my $line = &lt;$fh&gt;) {
+  print $line;
+}
+close($fh);
+                </pre>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. References and Complex Data</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>
+                <pre>
+my $arr_ref = [1,2,3];
+my $hash_ref = {a=>1, b=>2};
+print $arr_ref->[0];
+print $hash_ref->{a};
+                </pre>
+              </li>
+              <li>References are like pointers to arrays/hashes.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. Modules and CPAN</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Use modules with <code>use Module::Name;</code></li>
+              <li>Install more from <a href="https://metacpan.org" target="_blank">CPAN</a> for huge library access.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Best Practices & Resources</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Always use <code>strict</code> and <code>warnings</code> for safety.</li>
+              <li>Check docs: <a href="https://perldoc.perl.org/" target="_blank">perldoc.perl.org</a></li>
+              <li>Practice with small scripts and text processing challenges!</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fortran Class | Codes Knowledge Spreaders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn Fortran with interactive video tutorials and notes.">
+  <link rel="icon" href="logo2.png" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('coding-bg.jpg') center center/cover no-repeat fixed;
+      position: relative;
+    }
+    .class-dark-overlay {
+      min-height: 100vh;
+      width: 100vw;
+      background: rgba(8,12,18,0.92);
+      position: fixed;
+      top: 0; left: 0; z-index: 0;
+    }
+    .class-content-container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 4em;
+    }
+    .language-heading {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 3rem 0 1.2rem 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 8px 32px #000, 0 1px 0 #00ffe7;
+    }
+    .language-heading .fa-flask-vial {
+      font-size: 3.2rem;
+      color: #00ffe7;
+      text-shadow: 0 4px 40px #005c7e99, 0 1px 0 #ffd700;
+      animation: floatIcon 2.5s infinite ease-in-out alternate;
+    }
+    @keyframes floatIcon {
+      to { transform: translateY(-16px) scale(1.08);}
+      from { transform: translateY(0);}
+    }
+    .intro-warning-box {
+      background: rgba(20, 30, 40, 0.96);
+      border-radius: 16px;
+      box-shadow: 0 6px 32px #000c;
+      max-width: 700px;
+      margin-bottom: 2em;
+      padding: 2.1em 2em 1.2em 2em;
+      color: #e7e7e7;
+      font-size: 1.18rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .intro-warning-box .fa-lightbulb {
+      color: #ffd700;
+      font-size: 2.1rem;
+      margin-bottom: 0.6em;
+      display: block;
+      text-align: center;
+      animation: blinkbulb 1.8s infinite alternate;
+    }
+    @keyframes blinkbulb {
+      0% { opacity: 0.7;}
+      100% { opacity: 1;}
+    }
+    .toggle-section {
+      background: rgba(25, 33, 45, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 4px 24px #000a;
+      margin: 1.5em auto;
+      max-width: 900px;
+      padding: 2.2em 2em 2.2em 2em;
+      color: #f3f3f3;
+      width: 98%;
+      transition: box-shadow 0.2s;
+    }
+    .toggle-section h2 {
+      color: #00ffe7;
+      font-size: 1.55rem;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    details.toggle {
+      margin-bottom: 1.3em;
+      border-bottom: 1px solid #222c33;
+      border-radius: 0.5em;
+      background: rgba(30, 40, 55, 0.88);
+      transition: background 0.18s;
+      overflow: hidden;
+    }
+    details.toggle[open] {
+      background: rgba(0,255,231,0.06);
+    }
+    summary.toggle-summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ffd700;
+      font-size: 1.13em;
+      padding: 1em 1.2em;
+      outline: none;
+      background: none;
+      border: none;
+      transition: background 0.13s;
+      position: relative;
+    }
+    summary.toggle-summary::marker,
+    summary.toggle-summary::-webkit-details-marker {
+      color: #00ffe7;
+      font-size: 1.3em;
+    }
+    details.toggle .toggle-content {
+      padding: 0 1.2em 1em 1.7em;
+      color: #e7e7e7;
+      font-size: 1.07em;
+      line-height: 1.65;
+    }
+    .video-notes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5em;
+      justify-content: center;
+      margin-top: 2em;
+      width: 98%;
+      max-width: 1200px;
+    }
+    .tutorials-section, .notes-section {
+      flex: 1 1 340px;
+      background: rgba(18, 26, 38, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 24px #00ffe71a;
+      padding: 2em 1.7em 1.7em 1.7em;
+      min-width: 320px;
+      max-width: 520px;
+      margin-bottom: 2em;
+      color: #e7e7e7;
+      position: relative;
+    }
+    .tutorials-section h2, .notes-section h2 {
+      color: #ffd700;
+      font-size: 1.28rem;
+      margin-bottom: 1.3em;
+      font-weight: 700;
+      text-align: center;
+    }
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+    }
+    .video-thumb {
+      background: #000c;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #00ffe73c;
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 16/9;
+      margin-bottom: 0.5em;
+      position: relative;
+    }
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+      background: #000;
+    }
+    .video-title {
+      color: #00ffe7;
+      font-weight: 600;
+      font-size: 1.1em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width:1100px) {
+      .video-notes-grid { flex-direction: column; align-items: center;}
+    }
+    @media (max-width:700px) {
+      .class-content-container { padding: 0 0.15em;}
+      .intro-warning-box, .toggle-section, .tutorials-section, .notes-section { padding: 1.1em 0.7em;}
+      .language-heading { font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="class-dark-overlay"></div>
+  <div class="class-content-container">
+    <!-- Language Heading -->
+    <div class="language-heading">
+      <i class="fa-solid fa-flask-vial"></i>
+      Fortran Programming Class
+    </div>
+
+    <!-- "Before You Start" Section -->
+    <div class="intro-warning-box">
+      <i class="fa-solid fa-lightbulb"></i>
+      <details class="toggle" open>
+        <summary class="toggle-summary">Important: What to Consider Before You Start Learning Fortran</summary>
+        <div class="toggle-content">
+          <ul>
+            <li><b>Mindset:</b> Fortran is used for numerical and scientific computing. Be ready for structured, procedural code and attention to detail.</li>
+            <li><b>Tools:</b> Install a Fortran compiler (like GNU Fortran/gfortran) and use a simple code editor or IDE (e.g., VS Code, Code::Blocks).</li>
+            <li><b>Practice:</b> Type every example yourself. Compile, run, and modify code to see changes.</li>
+            <li><b>Ask Questions:</b> Join our <a href="community.html" target="_blank">community</a> to discuss challenges and share code.</li>
+            <li><b>Take Notes:</b> Jot down syntax, common errors, and compiler messages.</li>
+            <li><b>Stay Curious:</b> Try small scientific or mathematical programs as you learn.</li>
+            <li><b>Don’t Fear Errors:</b> Errors are normal. Read messages and search for solutions.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Main Content: Video Tutorials and Notes -->
+    <div class="video-notes-grid">
+      <!-- Tutorials Section -->
+      <div class="tutorials-section">
+        <h2><i class="fa-solid fa-video"></i> Fortran Video Tutorials</h2>
+        <div class="video-list">
+          <!-- Video 1 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/rN0TRElPq6w" allowfullscreen title="Fortran Full Course for Beginners"></iframe>
+            </div>
+            <div class="video-title">Fortran Full Course for Beginners</div>
+          </div>
+          <!-- Video 2 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/HJ9nBQLpK6A" allowfullscreen title="Fortran Tutorial for Beginners"></iframe>
+            </div>
+            <div class="video-title">Fortran Tutorial for Beginners</div>
+          </div>
+          <!-- Video 3 -->
+          <div>
+            <div class="video-thumb">
+              <iframe src="https://www.youtube.com/embed/Dg1t6x1E8X0" allowfullscreen title="Fortran Programming - FreeCodeCamp"></iframe>
+            </div>
+            <div class="video-title">Fortran Programming - FreeCodeCamp</div>
+          </div>
+        </div>
+      </div>
+      <!-- Notes Section -->
+      <div class="notes-section">
+        <h2><i class="fa-solid fa-book"></i> Fortran Notes & Topics</h2>
+        <!-- Topic 1 -->
+        <details class="toggle">
+          <summary class="toggle-summary">1. Introduction to Fortran</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>What is Fortran? A pioneering language for numerical and scientific computation.</li>
+              <li>Main uses: Engineering, simulations, physics, high-performance computing.</li>
+              <li>How to run Fortran: Writing, compiling, and executing code.</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 2 -->
+        <details class="toggle">
+          <summary class="toggle-summary">2. Program Structure</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Program units: <code>program</code>, <code>subroutine</code>, <code>function</code>, <code>module</code></li>
+              <li>Basic structure: <code>program name ... end program name</code></li>
+              <li>Statements and indentation</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 3 -->
+        <details class="toggle">
+          <summary class="toggle-summary">3. Variables and Data Types</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Declaring variables: <code>integer :: x</code>, <code>real :: y</code></li>
+              <li>Types: INTEGER, REAL, DOUBLE PRECISION, COMPLEX, CHARACTER, LOGICAL</li>
+              <li>Constants and parameters: <code>parameter</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 4 -->
+        <details class="toggle">
+          <summary class="toggle-summary">4. Input and Output</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Reading: <code>read *</code></li>
+              <li>Writing: <code>print *</code>, <code>write *</code></li>
+              <li>Formatting I/O</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 5 -->
+        <details class="toggle">
+          <summary class="toggle-summary">5. Arithmetic and Logical Operators</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code></li>
+              <li>Logical: <code>.AND.</code>, <code>.OR.</code>, <code>.NOT.</code></li>
+              <li>Relational: <code>.EQ.</code>, <code>.NE.</code>, <code>.GT.</code>, <code>.LT.</code>, <code>.GE.</code>, <code>.LE.</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 6 -->
+        <details class="toggle">
+          <summary class="toggle-summary">6. Control Flow (If, Select Case)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Conditional statements: <code>if</code>, <code>else if</code>, <code>else</code>, <code>end if</code></li>
+              <li>Select case for multiple choices</li>
+              <li>Example:<br>
+<code>
+if (x &gt;= 0) then<br>
+&nbsp;&nbsp;print *, "Positive"<br>
+else<br>
+&nbsp;&nbsp;print *, "Negative"<br>
+end if
+</code>
+              </li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 7 -->
+        <details class="toggle">
+          <summary class="toggle-summary">7. Loops (Do, Do While, Exit, Cycle)</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Do loop: <code>do i = 1, 10 ... end do</code></li>
+              <li>Do while loop: <code>do while (condition) ... end do</code></li>
+              <li>Exit and cycle for loop control</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 8 -->
+        <details class="toggle">
+          <summary class="toggle-summary">8. Arrays and Matrices</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Declaring arrays: <code>integer, dimension(10) :: arr</code></li>
+              <li>Multi-dimensional arrays</li>
+              <li>Array operations and intrinsic functions</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 9 -->
+        <details class="toggle">
+          <summary class="toggle-summary">9. Functions and Subroutines</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Functions: <code>function name(args) ... end function name</code></li>
+              <li>Subroutines: <code>subroutine name(args) ... end subroutine name</code></li>
+              <li>Passing arguments and return values</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 10 -->
+        <details class="toggle">
+          <summary class="toggle-summary">10. Modules and Scope</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Modules for reusable code: <code>module ... end module</code></li>
+              <li>Using <code>use</code> statement to import modules</li>
+              <li>Scope rules: public/private</li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 11 -->
+        <details class="toggle">
+          <summary class="toggle-summary">11. File Handling</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Opening/closing files: <code>open</code>, <code>close</code></li>
+              <li>Reading/writing files: <code>read</code>, <code>write</code></li>
+              <li>Error handling with <code>iostat</code></li>
+            </ul>
+          </div>
+        </details>
+        <!-- Topic 12 -->
+        <details class="toggle">
+          <summary class="toggle-summary">12. Debugging and Best Practices</summary>
+          <div class="toggle-content">
+            <ul>
+              <li>Common errors and warnings</li>
+              <li>Debugging tips: print statements, using IDEs</li>
+              <li>Best practices: code style, comments, modular design</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
